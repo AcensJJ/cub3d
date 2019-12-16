@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 22:19:34 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 22:31:26 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -199,7 +199,8 @@ int		ft_config_map_dest(int fd, char *line, t_file *file)
 					{
 						FS->direction = line[i];
 						FS->col = nb + 1;
-						FS->row = ft_count_char('\n');
+						FS->row = ft_strcount_char(dest, '\n');
+						ft_printf("dirct = %c, col = %i, row = %i \n", FS->direction, FS->col, FS->row);
 					}
 				}
 				join[++nb] = line[i];

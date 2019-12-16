@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 21:57:40 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/16 22:19:34 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,7 +41,7 @@ void    ft_cube(t_file *file)
 	F->img = mlx_new_image(F->mlx, F->axe_x, F->axe_y);
 	F->imgdata = (int *)mlx_get_data_addr(F->img, &bits, &sizeline, &end);
 	F->imgdata[540 * 1920 + 960] =
-	ft_rgbtoint(FC->c1,FC->c2,FC->c3);
+		ft_rgbtoint(FC->c1,FC->c2,FC->c3);
 	mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0);
 	mlx_loop_hook(F->mlx, ft_snakeoil, (void *)F);
 	/*mlx_hook(F->win, 2, 0, holdinput, (void *)F);
@@ -73,19 +73,19 @@ void	ft_colorchr(char *line, t_file *file, int p)
 	while (line[i] == ' ')
 		i++;
 	p == 1 ? (FC->c1 = ft_atoi((char *)line + i)) :
-	(FC->f1 = ft_atoi((char *)line + i));
+		(FC->f1 = ft_atoi((char *)line + i));
 	while (ft_isdigit(line[i]))
 		i++;
 	if (line[i] == ',')
 		i++;
 	p == 1 ? (FC->c2 = ft_atoi((char *)line + i)) :
-	(FC->f2 = ft_atoi((char *)line + i));
+		(FC->f2 = ft_atoi((char *)line + i));
 	while (ft_isdigit(line[i]))
 		i++;
 	if (line[i] == ',')
 		i++;
 	p == 1? (FC->c3 = ft_atoi((char *)line + i)) :
-	(FC->f3 = ft_atoi((char *)line + i));
+		(FC->f3 = ft_atoi((char *)line + i));
 }
 
 void	ft_pathchr(char *line, t_file *file, int p)
@@ -138,7 +138,7 @@ int		ft_config_map_dest(int fd, char *line, t_file *file)
 	char	*tmp;
 
 	if (!((FM->width = ft_first_line_map(line, -1, 0, file)) &&
-	(dest = ft_calloc(FM->width + 2, 1))))
+				(dest = ft_calloc(FM->width + 2, 1))))
 	{
 		ft_printf("Error\nMalloc\n");
 		return (0);
@@ -155,7 +155,7 @@ int		ft_config_map_dest(int fd, char *line, t_file *file)
 			while (line[i] == ' ')
 				i++;	
 			if (line[i] == '2' || line[i] == '1' || line[i] == '0' ||
-			line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+					line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
 			{
 				nb += 1;
 				i++;
@@ -188,6 +188,20 @@ int		ft_config_map_dest(int fd, char *line, t_file *file)
 			{
 				while (line[i] == ' ')
 					i++;
+				if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+				{
+					if (FS->direction != 0 && FS->col != 0 && FS->row != 0)
+					{
+						ft_printf("Error\nSpawn\n");
+						return (0);
+					}
+					else
+					{
+						FS->direction = line[i];
+						FS->col = nb + 1;
+						FS->row = ft_count_char('\n');
+					}
+				}
 				join[++nb] = line[i];
 				i++;
 			}
@@ -253,12 +267,12 @@ int    ft_init_color(t_file *file)
 		ft_printf("Error\nMalloc\n");
 		return (0);
 	}
-    FC->f1 = -1;
-    FC->f2 = -1;
-    FC->f3 = -1;
-    FC->c1 = -1;
-    FC->c2 = -1;
-    FC->c3 = -1;
+	FC->f1 = -1;
+	FC->f2 = -1;
+	FC->f3 = -1;
+	FC->c1 = -1;
+	FC->c2 = -1;
+	FC->c3 = -1;
 	return (1);
 }
 
@@ -269,7 +283,7 @@ int    ft_init_map(t_file *file)
 		ft_printf("Error\nMalloc\n");
 		return (0);
 	}
-    FM->map = NULL;
+	FM->map = NULL;
 	FM->width = 0;
 	FM->height = 0;
 	return (1);
@@ -282,9 +296,9 @@ int    ft_init_spawn(t_file *file)
 		ft_printf("Error\nMalloc\n");
 		return (0);
 	}
-    FS->direction = 0;
-    FS->col = -1;
-    FS->row = -1;
+	FS->direction = 0;
+	FS->col = -1;
+	FS->row = -1;
 	return (1);
 }
 
@@ -295,11 +309,11 @@ int    ft_init_path(t_file *file)
 		ft_printf("Error\nMalloc\n");
 		return (0);
 	}
-    FP->north = NULL;
-    FP->south = NULL;
-    FP->east = NULL;
-    FP->west = NULL;
-    FP->sprite = NULL;
+	FP->north = NULL;
+	FP->south = NULL;
+	FP->east = NULL;
+	FP->west = NULL;
+	FP->sprite = NULL;
 	return (1);
 }
 
@@ -344,24 +358,24 @@ void	ft_free_fil(t_file *file)
 int		ft_verif_color_path(t_file *file)
 {
 	if (FC->f1 < 0 || FC->f1 > 255 || FC->f2 < 0
-	|| FC->f2 > 255 || FC->f3 < 0 || FC->f3 > 255
-	|| FC->c1 < 0 || FC->c1 > 255 || FC->c2 < 0
-	|| FC->c2 > 255 || FC->c3 < 0 || FC->c3 > 255)
+			|| FC->f2 > 255 || FC->f3 < 0 || FC->f3 > 255
+			|| FC->c1 < 0 || FC->c1 > 255 || FC->c2 < 0
+			|| FC->c2 > 255 || FC->c3 < 0 || FC->c3 > 255)
 	{
 		ft_printf("Error\nPas tout les colors\n");
 		ft_free_fil(F);
 		return (0);	
 	}
 	if (!FP->north || !FP->south ||
-	!FP->east || !FP->west || !FP->sprite)
+			!FP->east || !FP->west || !FP->sprite)
 	{
 		ft_printf("Error\nPas tout les path\n");
 		ft_free_fil(F);
 		return (0);	
 	}
 	if (FP->north[0] == '\0' || FP->south[0] == '\0' ||
-	FP->east[0] == '\0' || FP->west[0] == '\0' ||
-	FP->sprite[0] == '\0')
+			FP->east[0] == '\0' || FP->west[0] == '\0' ||
+			FP->sprite[0] == '\0')
 	{
 		ft_printf("Error\nPas tout les path\n");
 		ft_free_fil(F);

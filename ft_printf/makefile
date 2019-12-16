@@ -6,7 +6,7 @@
 #    By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/10/18 15:41:28 by jacens       #+#   ##    ##    #+#        #
-#    Updated: 2019/12/03 17:57:53 by jacens      ###    #+. /#+    ###.fr      #
+#    Updated: 2019/12/16 15:07:04 by jacens      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,18 +20,7 @@ HEADER  =   includes
 
 LFLAGS  =   -I $(HEADER)
 
-SRCS    =	srcs/ft_printf.c\
-			srcs/ft_printf_outils.c\
-			srcs/ft_printf_outils2.c\
-			srcs/ft_printf_outils3.c\
-			srcs/ft_flags_printf.c\
-			srcs/ft_pre_printf.c\
-			srcs/ft_config_stru.c\
-			srcs/ft_check_va.c\
-			srcs/ft_pre_cas_d.c\
-			srcs/ft_pre_cas_d_2.c\
-			srcs/ft_pre_cas_d_3.c\
-			srcs/ft_pre_cas_d_4.c\
+SRCS    =	$(shell find . -name "*.c")
 
 OBJ     =   $(SRCS:.c=.o)
 

@@ -5,18 +5,18 @@ HEADER		=					./includes/cube.h
 MINILIBX	=					libmlx.a
 MINILIBXS	=					minilibx/libmlx.a
 LIB			=					libftprintf.a
-LIBS		=					Libftprintf/libftprintf.a
-SRC_PATH	=					sources
-SRCS_NAME	= 					srcs/cube.c\
+LIBS		=					ft_printf/libftprintf.a
+SRC_PATH	=					srcs
+SRCS_NAME	= 					cube.c
 OBJS		= 					${SRCS:.c=.o}
 LIBRARIES 	= 					$(LIBS) $(MINILIBXS)
 NAME		= 					Cub3D
 RM			= 					rm -f
 FLAGS 		= 					-Wall -Wextra -Werror -g3
 GFLAGS 		=					-Wall -Wextra -Werror -g3 -fsanitize=address -lmlx -framework OpenGL -framework AppKit\
-								-I$(INCLUDE_PATH)\
+								-I$(INCLUDE_PATH)
 GFLAGS2 	=					-Wall -Wextra -Werror -g3\
-								-I$(INCLUDE_PATH)\
+								-I$(INCLUDE_PATH)
 SRCS 		= 					$(addprefix $(SRC_PATH)/,$(SRCS_NAME))
 INCLUDE_PATH = 					./includes
 # **************************************************************************** #

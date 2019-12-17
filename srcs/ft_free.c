@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:50:59 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 13:52:13 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 13:59:49 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,8 +34,11 @@ void	ft_free_map(t_file *file)
 
 	i = -1;
 	free(FM->mapchar);
-	while (FM->map[++i])
-		free(FM->map[i]);
+	if (FM->map)
+	{
+		while (FM->map[++i])
+			free(FM->map[i]);
+	}
 	free(FM);
 }
 

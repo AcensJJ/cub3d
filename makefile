@@ -15,7 +15,7 @@ LIBRARIES 	= 					$(LIBS) $(MINILIBXS)
 NAME		= 					Cub3D
 RM			= 					rm -f
 FLAGS 		= 					-Wall -Wextra -Werror -g3
-GFLAGS 		=					-Wall -Wextra -Werror -g3 -fsanitize=address -lmlx -framework OpenGL -framework AppKit\
+GFLAGS 		=					-Wall -Wextra -Werror -g3 -lmlx -framework OpenGL -framework AppKit\
 								-I$(INCLUDE_PATH)
 GFLAGS2 	=					-Wall -Wextra -Werror -g3\
 								-I$(INCLUDE_PATH)

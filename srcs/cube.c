@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 13:52:08 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 14:06:33 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -129,22 +129,21 @@ int		ft_first_line_map(char *line, int i, int nb, t_file *file)
 	return (nb);
 }
 
-int		ft_config_map_dest(int fd, char *line, t_file *file)
+int		ft_config_map(int fd, char *line, t_file *file)
 {
 	int 	nb;
 	int 	i;
-	char	*dest;
 	char	*join;
 	char	*tmp;
 
 	if (!((FM->width = ft_first_line_map(line, -1, 0, file)) &&
-				(dest = ft_calloc(FM->width + 2, 1))))
+		(FM->mapchar = ft_calloc(FM->width + 1, 1))))
 	{
 		ft_printf("Error\nMalloc\n");
 		return (0);
 	}
-	ft_memset(dest,	49, FM->width);
-	dest[FM->width + 1] = '\n';
+	ft_memset(FM->mapchar,	49, FM->width);
+	FM->mapchar[FM->width] = '\n';
 	while (get_next_line(fd, &line) >= 0)
 	{
 		FM->height += 1;
@@ -162,7 +161,7 @@ int		ft_config_map_dest(int fd, char *line, t_file *file)
 			}
 			else if (line[i] != '\0')
 			{
-				free(dest);
+				free(FM->mapchar);
 				ft_printf("Error\nMap2\n");
 				return (0);
 			}
@@ -171,13 +170,13 @@ int		ft_config_map_dest(int fd, char *line, t_file *file)
 			return (1);
 		else if (nb != FM->width)
 		{
-			free(dest);
+			free(FM->mapchar);
 			ft_printf("Error\nMap3\n");
 			return (0);
 		}
 		else
 		{
-			if (!(join = malloc(sizeof(char) * nb + 2)))
+			if (!(join = malloc(sizeof(char) * nb + 1)))
 			{
 				ft_printf("Error\nMalloc\n");
 				return (0);
@@ -199,7 +198,7 @@ int		ft_config_map_dest(int fd, char *line, t_file *file)
 					{
 						FS->direction = line[i];
 						FS->col = nb + 1;
-						FS->row = ft_strcount_char(dest, '\n');
+						FS->row = ft_strcount_char(FM->mapchar, '\n');
 					}
 				}
 				join[++nb] = line[i];
@@ -207,10 +206,10 @@ int		ft_config_map_dest(int fd, char *line, t_file *file)
 			}
 			join[++nb] = '\n';
 			join[++nb] = '\0';
-			tmp = ft_strjoin(dest, join);
-			free(dest);
+			tmp = ft_strjoin(FM->mapchar, join);
+			free(FM->mapchar);
 			free(join);
-			dest = tmp;
+			FM->mapchar = tmp;
 		}
 		free(line);
 	}
@@ -254,7 +253,7 @@ int		ft_parse_cube(char	*fichier, t_file *file)
 		if (ft_strncmp(&line[i], "1", 1))
 			free(line);
 		else
-			if (!ft_config_map_dest(fd, line, file))
+			if (!ft_config_map(fd, line, file))
 				return (0);
 	}
 	return (1);
@@ -300,7 +299,7 @@ int		ft_verif_map(t_file *file)
 		ft_printf("Error\nPas de Spawn Point\n");
 		return (0);
 	}
-	while (FM->map[++i][0])
+	while (FM->map[++i])
 	{
 		if (FM->map[i][0] != '1' && FM->map[i][FM->width - 1] != '1')
 		{
@@ -310,8 +309,8 @@ int		ft_verif_map(t_file *file)
 		}
 	}
 	i = -1;
-	while (FM->map[FM->height][++i])
-		if (FM->map[FM->height][i] != '1')
+	while (FM->map[FM->height - 2][++i])
+		if (FM->map[FM->height - 2][i] != '1')
 		{
 			ft_free_fil(F);
 			ft_printf("Error\nPas de contour de map\n");
@@ -338,6 +337,7 @@ int 	main(int ac, char **av)
 		return (0);
 	if (!(ft_parse_cube(av[1], F)))
 		return (0);
+	ft_printf("Map = |\n%s|\n", FM->mapchar);
 	if (!(FM->map = ft_split(FM->mapchar, '\n')))
 	{
 		ft_free_fil(F);

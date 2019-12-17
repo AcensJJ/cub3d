@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 21:29:53 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 13:53:37 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,7 +37,8 @@ typedef struct		s_spawn
 
 typedef struct		s_map
 {
-	int		**map;
+	char	**map;
+	char	*mapchar;
 	int		width;
 	int		height;
 }					t_map;
@@ -77,5 +78,11 @@ typedef struct		s_file
 
 int					main(int ac, char **av);
 void				ft_cube();
-
+void				ft_free_path(t_file *file);
+void				ft_free_map(t_file *file);
+void				ft_free_fil(t_file *file);
+int   				ft_init_color(t_file *file);
+int    				ft_init_map(t_file *file);
+int    				ft_init_spawn(t_file *file);
+int    				ft_init_path(t_file *file);
 #endif

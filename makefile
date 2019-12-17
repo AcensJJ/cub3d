@@ -7,7 +7,9 @@ MINILIBXS	=					minilibx/libmlx.a
 LIB			=					libftprintf.a
 LIBS		=					ft_printf/libftprintf.a
 SRC_PATH	=					srcs
-SRCS_NAME	= 					cube.c
+SRCS_NAME	= 					cube.c\
+								ft_init.c\
+								ft_free.c
 OBJS		= 					${SRCS:.c=.o}
 LIBRARIES 	= 					$(LIBS) $(MINILIBXS)
 NAME		= 					Cub3D

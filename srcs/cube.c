@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/16 22:31:26 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 13:52:08 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -200,7 +200,6 @@ int		ft_config_map_dest(int fd, char *line, t_file *file)
 						FS->direction = line[i];
 						FS->col = nb + 1;
 						FS->row = ft_strcount_char(dest, '\n');
-						ft_printf("dirct = %c, col = %i, row = %i \n", FS->direction, FS->col, FS->row);
 					}
 				}
 				join[++nb] = line[i];
@@ -261,101 +260,6 @@ int		ft_parse_cube(char	*fichier, t_file *file)
 	return (1);
 }
 
-int    ft_init_color(t_file *file)
-{
-	if (!(FC = malloc(sizeof(t_color))))
-	{
-		ft_printf("Error\nMalloc\n");
-		return (0);
-	}
-	FC->f1 = -1;
-	FC->f2 = -1;
-	FC->f3 = -1;
-	FC->c1 = -1;
-	FC->c2 = -1;
-	FC->c3 = -1;
-	return (1);
-}
-
-int    ft_init_map(t_file *file)
-{
-	if (!(FM = malloc(sizeof(t_map))))
-	{
-		ft_printf("Error\nMalloc\n");
-		return (0);
-	}
-	FM->map = NULL;
-	FM->width = 0;
-	FM->height = 0;
-	return (1);
-}
-
-int    ft_init_spawn(t_file *file)
-{
-	if (!(FS = malloc(sizeof(t_map))))
-	{
-		ft_printf("Error\nMalloc\n");
-		return (0);
-	}
-	FS->direction = 0;
-	FS->col = -1;
-	FS->row = -1;
-	return (1);
-}
-
-int    ft_init_path(t_file *file)
-{
-	if (!(FP = malloc(sizeof(t_path))))
-	{
-		ft_printf("Error\nMalloc\n");
-		return (0);
-	}
-	FP->north = NULL;
-	FP->south = NULL;
-	FP->east = NULL;
-	FP->west = NULL;
-	FP->sprite = NULL;
-	return (1);
-}
-
-void	ft_free_path(t_file *file)
-{
-	if (FP->north)
-		free(FP->north);
-	if (FP->south)
-		free(FP->south);
-	if (FP->east)
-		free(FP->east);
-	if (FP->west)
-		free(FP->west);
-	if (FP->sprite)
-		free(FP->sprite);
-}
-
-void	ft_free_map(t_file *file)
-{
-	int i;
-
-	i = -1;
-	while (FM->map[++i])
-		free(FM->map[i]);
-	free(F->map);
-	F->map = NULL;
-}
-
-void	ft_free_fil(t_file *file)
-{
-	ft_free_path(F);
-	free(FP);
-	free(FS);
-	FP = NULL;
-	ft_init_color(F);
-	free(FC);
-	FC = NULL;
-	FM ? ft_free_map(F) : 0;
-	free(F);
-}
-
 int		ft_verif_color_path(t_file *file)
 {
 	if (FC->f1 < 0 || FC->f1 > 255 || FC->f2 < 0
@@ -385,8 +289,34 @@ int		ft_verif_color_path(t_file *file)
 	return (1);
 }
 
-int		ft_verif_map(void)
+int		ft_verif_map(t_file *file)
 {
+	int i;
+
+	i = -1;
+	if (!FS->direction)
+	{
+		ft_free_fil(F);
+		ft_printf("Error\nPas de Spawn Point\n");
+		return (0);
+	}
+	while (FM->map[++i][0])
+	{
+		if (FM->map[i][0] != '1' && FM->map[i][FM->width - 1] != '1')
+		{
+			ft_free_fil(F);
+			ft_printf("Error\nPas de contour de map\n");
+			return (0);
+		}
+	}
+	i = -1;
+	while (FM->map[FM->height][++i])
+		if (FM->map[FM->height][i] != '1')
+		{
+			ft_free_fil(F);
+			ft_printf("Error\nPas de contour de map\n");
+			return (0);
+		}
 	return (1);
 }
 
@@ -401,14 +331,20 @@ int 	main(int ac, char **av)
 	}
 	if (!(F = malloc(sizeof(t_file))))
 	{
-		ft_printf("Error\nMalloc\n");
+		ft_printf("Error\nMalloc file\n");
 		return (0);
 	}
 	if (!(ft_init_color(F) && ft_init_path(F) && ft_init_map(F) && ft_init_spawn(F)))
 		return (0);
 	if (!(ft_parse_cube(av[1], F)))
 		return (0);
-	if (!(ft_verif_color_path(F) && ft_verif_map()))
+	if (!(FM->map = ft_split(FM->mapchar, '\n')))
+	{
+		ft_free_fil(F);
+		ft_printf("Error\nMalloc split\n");
+		return (0);
+	}
+	if (!(ft_verif_color_path(F) && ft_verif_map(F)))
 		return (0);
 	ac = 0;
 	ft_cube(F);

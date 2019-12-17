@@ -6,14 +6,14 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 18:08:14 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 18:10:29 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-int		ft_quit(t_file *file)
+int			ft_quit(t_file *file)
 {
 	mlx_destroy_window(F->mlx, F->win);
 	exit(EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 16:11:36 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 20:05:57 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,34 +74,34 @@ void	ft_ray(t_file *file, float x, float y)
 	float intery[2];
 	if (x < 0)
 	{
-		interx[0] = (int)FS->x + 0.5;
-		if ((int)FS->x - FS->x > 0.5)
-			interx[0] = (int)FS->x + 1.5;
+		interx[0] = (int)FS->y + 0.5;
+		if ((int)FS->y - FS->y > 0.5)
+			interx[0] = (int)FS->y + 1.5;
 	}
 	else
 	{
-		interx[0] = (int)FS->x - 0.5;
-		if ((int)FS->x - FS->x > 0.5)
-			interx[0] = (int)FS->x + 0.5;
+		interx[0] = (int)FS->y - 0.5;
+		if ((int)FS->y - FS->y > 0.5)
+			interx[0] = (int)FS->y + 0.5;
 	}
 	if (y < 0)
 	{
-		intery[1] = (int)FS->y + 0.5;
-		if ((int)FS->y - FS->y > 0.5)
-			intery[1] = (int)FS->y + 1.5;
+		intery[1] = (int)FS->x + 0.5;
+		if ((int)FS->x - FS->x > 0.5)
+			intery[1] = (int)FS->x + 1.5;
 	}
 	else
 	{
-		intery[1] = (int)FS->y - 0.5;
-		if ((int)FS->y - FS->y > 0.5)
-			intery[1] = (int)FS->y + 0.5;
+		intery[1] = (int)FS->x - 0.5;
+		if ((int)FS->x - FS->x > 0.5)
+			intery[1] = (int)FS->x + 0.5;
 	}
 	while (!F->hit)
 	{
-		interx[1] = FS->y + (fabs(interx[0] - FS->x) / x * y);	//HERE
-		intery[0] = FS->x + (fabs(intery[1] - FS->y) / y * x);	//HERE
-		if (fabs(y) < 0.001 || (fabs(x) > 0.001 && distance(FS->x, FS->y, interx[0], interx[1]) <
-			distance(FS->x, FS->y, intery[0], intery[1])))
+		interx[1] = FS->x + (fabs(interx[0] - FS->y) / x * y);	//HERE
+		intery[0] = FS->y + (fabs(intery[1] - FS->x) / y * x);	//HERE
+		if (fabs(y) < 0.001 || (fabs(x) > 0.001 && distance(FS->y, FS->x, interx[0], interx[1]) <
+			distance(FS->y, FS->x, intery[0], intery[1])))
 		{
 			checkwall(file, interx, x, 'x');
 			x < 0 ? interx[0]-- : interx[0]++; //HERE
@@ -127,9 +127,10 @@ void	raycast(t_file *file)
 		F->hit = 0;
 		angle = FS->rotation - (60/2) + i * (60.0/(float)F->axe_x);
 		angle *= M_PI / 180;
-		x = sin(angle);			//HERE
-		y = cos(angle + M_PI);	//HERE
+		x = sin(angle + M_PI);			//HERE
+		y = cos(angle);	//HERE
 		ft_ray(file, x, y);
+		i % 150 == 0 ? sleep(1) : 0;
 		i++;
 	}
 }

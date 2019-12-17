@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:27:46 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 18:02:50 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 19:25:29 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,8 +27,8 @@ int			ft_verif_spawn_config(t_file *file, char line, int nb)
 		line == 'E' ? FS->rotation = 90 : 0;
 		line == 'S' ? FS->rotation = 180 : 0;
 		line == 'W' ? FS->rotation = 270 : 0;
-		FS->y = nb + 1;
-		FS->x = ft_strcount_char(FM->mapchar, '\n');
+		FS->x = nb + 1;
+		FS->y = ft_strcount_char(FM->mapchar, '\n');
 	}
 	return (1);
 }

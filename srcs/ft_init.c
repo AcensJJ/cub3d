@@ -6,14 +6,14 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:51:04 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 13:51:47 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 16:36:08 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-int    ft_init_color(t_file *file)
+int		ft_init_color(t_file *file)
 {
 	if (!(FC = malloc(sizeof(t_color))))
 	{
@@ -30,7 +30,7 @@ int    ft_init_color(t_file *file)
 	return (1);
 }
 
-int    ft_init_map(t_file *file)
+int		ft_init_map(t_file *file)
 {
 	if (!(FM = malloc(sizeof(t_map))))
 	{
@@ -45,7 +45,7 @@ int    ft_init_map(t_file *file)
 	return (1);
 }
 
-int    ft_init_spawn(t_file *file)
+int		ft_init_spawn(t_file *file)
 {
 	if (!(FS = malloc(sizeof(t_map))))
 	{
@@ -54,12 +54,12 @@ int    ft_init_spawn(t_file *file)
 		return (0);
 	}
 	FS->direction = 0;
-	FS->col = -1;
-	FS->row = -1;
+	FS->y = -1;
+	FS->x = -1;
 	return (1);
 }
 
-int    ft_init_path(t_file *file)
+int		ft_init_path(t_file *file)
 {
 	if (!(FP = malloc(sizeof(t_path))))
 	{

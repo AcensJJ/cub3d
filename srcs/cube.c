@@ -6,31 +6,20 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 14:06:33 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/17 18:08:14 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-int		ft_rgbtoint(int red, int green, int blue)
-{
-	return((256* 256 * red) + (256 * green) + blue);
-}
-
-int		ft_snakeoil()
-{
-	//ft_printf("yo");
-	return (1);
-}
-
-int 	ft_quit(t_file *file)
+int		ft_quit(t_file *file)
 {
 	mlx_destroy_window(F->mlx, F->win);
 	exit(EXIT_SUCCESS);
 }
 
-void    ft_cube(t_file *file)
+void		ft_cube(t_file *file)
 {
 	int		bits;
 	int		sizeline;
@@ -40,8 +29,7 @@ void    ft_cube(t_file *file)
 	F->win = mlx_new_window(F->mlx, F->axe_x, F->axe_y, "Have FUN");
 	F->img = mlx_new_image(F->mlx, F->axe_x, F->axe_y);
 	F->imgdata = (int *)mlx_get_data_addr(F->img, &bits, &sizeline, &end);
-	F->imgdata[540 * 1920 + 960] =
-		ft_rgbtoint(FC->c1,FC->c2,FC->c3);
+	F->imgdata[540 * 1920 + 960] = ft_rgbtoint(FC->c1, FC->c2, FC->c3);
 	mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0);
 	mlx_loop_hook(F->mlx, ft_snakeoil, (void *)F);
 	/*mlx_hook(F->win, 2, 0, holdinput, (void *)F);
@@ -50,177 +38,36 @@ void    ft_cube(t_file *file)
 	mlx_loop(F->mlx);
 }
 
-void 	ft_resochr(char *line, t_file *file)
+static int	ft_parse_cube2(t_file *file, char *line, int i)
 {
-	int i;
-
-	i = 1;
-	while (line[i] == ' ')
-		i++;
-	F->axe_x = ft_atoi((char *)line + i);
-	while (ft_isdigit(line[i]))
-		i++;
-	while (line[i] == ' ')
-		i++;
-	F->axe_y = ft_atoi((char *)line + i);
-}
-
-void	ft_colorchr(char *line, t_file *file, int p)
-{
-	int i;
-
-	i = 1;
-	while (line[i] == ' ')
-		i++;
-	p == 1 ? (FC->c1 = ft_atoi((char *)line + i)) :
-		(FC->f1 = ft_atoi((char *)line + i));
-	while (ft_isdigit(line[i]))
-		i++;
-	if (line[i] == ',')
-		i++;
-	p == 1 ? (FC->c2 = ft_atoi((char *)line + i)) :
-		(FC->f2 = ft_atoi((char *)line + i));
-	while (ft_isdigit(line[i]))
-		i++;
-	if (line[i] == ',')
-		i++;
-	p == 1? (FC->c3 = ft_atoi((char *)line + i)) :
-		(FC->f3 = ft_atoi((char *)line + i));
-}
-
-void	ft_pathchr(char *line, t_file *file, int p)
-{
-	int i;
-	int j;
-
-	i = (p == 4 ? 1 : 2);
-	while (line[i] == ' ')
-		i++;
-	j = i;
-	while (line[i] != ' ' && line[i])
-		i++;
-	p == 0 ? (FP->south = ft_substr(line, j, i)) : 0;
-	p == 1 ? (FP->north = ft_substr(line, j, i)) : 0;
-	p == 2 ? (FP->west = ft_substr(line, j, i)) : 0;
-	p == 3 ? (FP->east = ft_substr(line, j, i)) : 0;
-	p == 4 ? (FP->sprite = ft_substr(line, j, i)) : 0;
-}
-
-int		ft_first_line_map(char *line, int i, int nb, t_file *file)
-{
-	FM->height += 1;
-	while (line[++i] != '\0')
+	if (!ft_strncmp(&line[i], "C ", 2))
+		ft_colorchr(&line[i], F, 1);
+	else if (!ft_strncmp(&line[i], "F ", 2))
+		ft_colorchr(&line[i], F, 0);
+	else if (!ft_strncmp(&line[i], "SO ", 3) && !FP->south)
+		ft_pathchr(&line[i], F, 0);
+	else if (!ft_strncmp(&line[i], "NO ", 3) && !FP->north)
+		ft_pathchr(&line[i], F, 1);
+	else if (!ft_strncmp(&line[i], "WE ", 3) && !FP->west)
+		ft_pathchr(&line[i], F, 2);
+	else if (!ft_strncmp(&line[i], "EA ", 3) && !FP->east)
+		ft_pathchr(&line[i], F, 3);
+	else if (!ft_strncmp(&line[i], "S ", 2) && !FP->sprite)
+		ft_pathchr(&line[i], F, 4);
+	else if (line[i] != '\0' && line[i] != '1')
 	{
-		while (line[i] == ' ')
-			i++;
-		if (line[i] == '1')
-		{
-			nb += 1;
-			i++;
-		}
-		else if (line[i] != '\0')
-		{
-			free(line);
-			ft_printf("Error\nMap1\n");
-			return (0);
-		}
-	}
-	free(line);
-	return (nb);
-}
-
-int		ft_config_map(int fd, char *line, t_file *file)
-{
-	int 	nb;
-	int 	i;
-	char	*join;
-	char	*tmp;
-
-	if (!((FM->width = ft_first_line_map(line, -1, 0, file)) &&
-		(FM->mapchar = ft_calloc(FM->width + 1, 1))))
-	{
-		ft_printf("Error\nMalloc\n");
-		return (0);
-	}
-	ft_memset(FM->mapchar,	49, FM->width);
-	FM->mapchar[FM->width] = '\n';
-	while (get_next_line(fd, &line) >= 0)
-	{
-		FM->height += 1;
-		i = 0;
-		nb = 0;
-		while (line[i] != '\0')
-		{
-			while (line[i] == ' ')
-				i++;	
-			if (line[i] == '2' || line[i] == '1' || line[i] == '0' ||
-					line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
-			{
-				nb += 1;
-				i++;
-			}
-			else if (line[i] != '\0')
-			{
-				free(FM->mapchar);
-				ft_printf("Error\nMap2\n");
-				return (0);
-			}
-		}
-		if (nb == 0)
-			return (1);
-		else if (nb != FM->width)
-		{
-			free(FM->mapchar);
-			ft_printf("Error\nMap3\n");
-			return (0);
-		}
-		else
-		{
-			if (!(join = malloc(sizeof(char) * nb + 1)))
-			{
-				ft_printf("Error\nMalloc\n");
-				return (0);
-			}
-			i = 0;
-			nb = -1;
-			while (line[i] != '\0')
-			{
-				while (line[i] == ' ')
-					i++;
-				if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
-				{
-					if (FS->direction != 0 && FS->col != 0 && FS->row != 0)
-					{
-						ft_printf("Error\nSpawn\n");
-						return (0);
-					}
-					else
-					{
-						FS->direction = line[i];
-						FS->col = nb + 1;
-						FS->row = ft_strcount_char(FM->mapchar, '\n');
-					}
-				}
-				join[++nb] = line[i];
-				i++;
-			}
-			join[++nb] = '\n';
-			join[++nb] = '\0';
-			tmp = ft_strjoin(FM->mapchar, join);
-			free(FM->mapchar);
-			free(join);
-			FM->mapchar = tmp;
-		}
 		free(line);
+		ft_printf("Error\nParsing\n");
+		return (0);
 	}
 	return (1);
 }
 
-int		ft_parse_cube(char	*fichier, t_file *file)
+int			ft_parse_cube(char *fichier, t_file *file)
 {
-	char 	*line;
+	char	*line;
 	int		i;
-	int 	fd;
+	int		fd;
 
 	fd = open(fichier, O_RDONLY);
 	while ((get_next_line(fd, &line) > 0))
@@ -230,96 +77,17 @@ int		ft_parse_cube(char	*fichier, t_file *file)
 			i++;
 		if (!ft_strncmp(&line[i], "R ", 2))
 			ft_resochr(&line[i], F);
-		else if (!ft_strncmp(&line[i], "C ", 2))
-			ft_colorchr(&line[i], F, 1);
-		else if (!ft_strncmp(&line[i], "F ", 2))
-			ft_colorchr(&line[i], F, 0);
-		else if (!ft_strncmp(&line[i], "SO ", 3) && !FP->south)
-			ft_pathchr(&line[i], F, 0);
-		else if (!ft_strncmp(&line[i], "NO ", 3) && !FP->north)
-			ft_pathchr(&line[i], F, 1);
-		else if (!ft_strncmp(&line[i], "WE ", 3) && !FP->west)
-			ft_pathchr(&line[i], F, 2);
-		else if (!ft_strncmp(&line[i], "EA ", 3) && !FP->east)			
-			ft_pathchr(&line[i], F, 3);
-		else if (!ft_strncmp(&line[i], "S ", 2) && !FP->sprite)
-			ft_pathchr(&line[i], F, 4);
-		else if (line[i] != '\0' && line[i] != '1')
-		{
-			free(line);
-			ft_printf("Error\nParsing\n");
+		else if (!(ft_parse_cube2(F, line, i)))
 			return (0);
-		}
 		if (ft_strncmp(&line[i], "1", 1))
 			free(line);
-		else
-			if (!ft_config_map(fd, line, file))
-				return (0);
-	}
-	return (1);
-}
-
-int		ft_verif_color_path(t_file *file)
-{
-	if (FC->f1 < 0 || FC->f1 > 255 || FC->f2 < 0
-			|| FC->f2 > 255 || FC->f3 < 0 || FC->f3 > 255
-			|| FC->c1 < 0 || FC->c1 > 255 || FC->c2 < 0
-			|| FC->c2 > 255 || FC->c3 < 0 || FC->c3 > 255)
-	{
-		ft_printf("Error\nPas tout les colors\n");
-		ft_free_fil(F);
-		return (0);	
-	}
-	if (!FP->north || !FP->south ||
-			!FP->east || !FP->west || !FP->sprite)
-	{
-		ft_printf("Error\nPas tout les path\n");
-		ft_free_fil(F);
-		return (0);	
-	}
-	if (FP->north[0] == '\0' || FP->south[0] == '\0' ||
-			FP->east[0] == '\0' || FP->west[0] == '\0' ||
-			FP->sprite[0] == '\0')
-	{
-		ft_printf("Error\nPas tout les path\n");
-		ft_free_fil(F);
-		return (0);
-	}
-	return (1);
-}
-
-int		ft_verif_map(t_file *file)
-{
-	int i;
-
-	i = -1;
-	if (!FS->direction)
-	{
-		ft_free_fil(F);
-		ft_printf("Error\nPas de Spawn Point\n");
-		return (0);
-	}
-	while (FM->map[++i])
-	{
-		if (FM->map[i][0] != '1' && FM->map[i][FM->width - 1] != '1')
-		{
-			ft_free_fil(F);
-			ft_printf("Error\nPas de contour de map\n");
+		else if (!ft_config_map(fd, line, file))
 			return (0);
-		}
 	}
-	i = -1;
-	while (FM->map[FM->height - 2][++i])
-		if (FM->map[FM->height - 2][i] != '1')
-		{
-			ft_free_fil(F);
-			ft_printf("Error\nPas de contour de map\n");
-			return (0);
-		}
 	return (1);
 }
 
-int 	main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_file	*file;
 
@@ -333,20 +101,8 @@ int 	main(int ac, char **av)
 		ft_printf("Error\nMalloc file\n");
 		return (0);
 	}
-	if (!(ft_init_color(F) && ft_init_path(F) && ft_init_map(F) && ft_init_spawn(F)))
-		return (0);
-	if (!(ft_parse_cube(av[1], F)))
-		return (0);
-	ft_printf("Map = |\n%s|\n", FM->mapchar);
-	if (!(FM->map = ft_split(FM->mapchar, '\n')))
-	{
-		ft_free_fil(F);
-		ft_printf("Error\nMalloc split\n");
-		return (0);
-	}
-	if (!(ft_verif_color_path(F) && ft_verif_map(F)))
-		return (0);
-	ac = 0;
+	if (!(ft_start_verif(F, av)))
+		return (1);
 	ft_cube(F);
 	return (0);
 }

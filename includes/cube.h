@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 18:08:37 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 18:55:02 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,24 +24,47 @@
 
 # define F file
 # define FC file->color
-# define FP file->path
-# define FM file->map
-# define FS file->spawn
+# define PATH file->path
+# define MAP file->map
+# define PLAYER file->player
+# define RAY file->ray
 
-typedef struct		s_spawn
+typedef struct		s_ray
 {
-	char	direction;
-	float	y;
-	float	x;
-	float	rotation;
-}					t_spawn;
+	float 			sidex;
+	float 			sidey;
+	float 			deltdistx;
+	float 			deltdisty;
+	float			raydirx;
+	float			raydiry;
+	int				mapx;
+	int				mapy;
+	int				stepx;
+	int				stepy;
+	float			perpWallDist;
+	int				hit;
+	int				side;
+}					t_ray;
+
+typedef struct		s_player
+{
+	char			direction;
+	float			y;
+	float			x;
+	float			plany;
+	float			planx;
+	float			dirx;
+	float			diry;
+	float			camx;
+	float			rotation;
+}					t_player;
 
 typedef struct		s_map
 {
-	char	**map;
-	char	*mapchar;
-	int		width;
-	int		height;
+	char			**map;
+	char			*mapchar;
+	int				width;
+	int				height;
 }					t_map;
 
 typedef struct		s_path
@@ -74,8 +97,8 @@ typedef struct		s_file
 	struct s_path	*path;
 	struct s_color	*color;
 	struct s_map	*map;
-	struct s_spawn	*spawn;
-	int				hit;
+	struct s_player	*player;
+	struct s_ray	*ray;
 }					t_file;
 
 int					main(int ac, char **av);
@@ -87,12 +110,12 @@ void				ft_free_fil(t_file *file);
 
 int   				ft_init_color(t_file *file);
 int    				ft_init_map(t_file *file);
-int    				ft_init_spawn(t_file *file);
+int    				ft_init_player(t_file *file);
 int    				ft_init_path(t_file *file);
 
 int					ft_verif_color_path(t_file *file);
 int					ft_verif_map(t_file *file);
-int					ft_verif_spawn_config(t_file *file, char line, int nb);
+int					ft_verif_player_config(t_file *file, char line, int nb);
 int					ft_start_verif(t_file *file, char **av);
 
 int					ft_parse_cube(char	*fichier, t_file *file);

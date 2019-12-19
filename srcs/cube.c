@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 19:17:32 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 18:32:31 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,15 +44,15 @@ static int	ft_parse_cube2(t_file *file, char *line, int i)
 		ft_colorchr(&line[i], F, 1);
 	else if (!ft_strncmp(&line[i], "F ", 2))
 		ft_colorchr(&line[i], F, 0);
-	else if (!ft_strncmp(&line[i], "SO ", 3) && !FP->south)
+	else if (!ft_strncmp(&line[i], "SO ", 3) && !PATH->south)
 		ft_pathchr(&line[i], F, 0);
-	else if (!ft_strncmp(&line[i], "NO ", 3) && !FP->north)
+	else if (!ft_strncmp(&line[i], "NO ", 3) && !PATH->north)
 		ft_pathchr(&line[i], F, 1);
-	else if (!ft_strncmp(&line[i], "WE ", 3) && !FP->west)
+	else if (!ft_strncmp(&line[i], "WE ", 3) && !PATH->west)
 		ft_pathchr(&line[i], F, 2);
-	else if (!ft_strncmp(&line[i], "EA ", 3) && !FP->east)
+	else if (!ft_strncmp(&line[i], "EA ", 3) && !PATH->east)
 		ft_pathchr(&line[i], F, 3);
-	else if (!ft_strncmp(&line[i], "S ", 2) && !FP->sprite)
+	else if (!ft_strncmp(&line[i], "S ", 2) && !PATH->sprite)
 		ft_pathchr(&line[i], F, 4);
 	else if (line[i] != '\0' && line[i] != '1')
 	{

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 16:38:22 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 19:26:20 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 18:32:31 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,9 +62,9 @@ void	ft_pathchr(char *line, t_file *file, int p)
 	j = i;
 	while (line[i] != ' ' && line[i])
 		i++;
-	p == 0 ? (FP->south = ft_substr(line, j, i)) : 0;
-	p == 1 ? (FP->north = ft_substr(line, j, i)) : 0;
-	p == 2 ? (FP->west = ft_substr(line, j, i)) : 0;
-	p == 3 ? (FP->east = ft_substr(line, j, i)) : 0;
-	p == 4 ? (FP->sprite = ft_substr(line, j, i)) : 0;
+	p == 0 ? (PATH->south = ft_substr(line, j, i)) : 0;
+	p == 1 ? (PATH->north = ft_substr(line, j, i)) : 0;
+	p == 2 ? (PATH->west = ft_substr(line, j, i)) : 0;
+	p == 3 ? (PATH->east = ft_substr(line, j, i)) : 0;
+	p == 4 ? (PATH->sprite = ft_substr(line, j, i)) : 0;
 }

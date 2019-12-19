@@ -6,12 +6,36 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:51:04 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 16:36:08 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 18:55:38 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
+
+int		ft_init_ray(t_file *file)
+{
+	if (!(RAY = malloc(sizeof(t_ray))))
+	{
+		ft_free_fil(F);
+		ft_printf("Error\nMalloc ray\n");
+		return (0);
+	}
+	RAY->hit = 0;
+	RAY->mapy = 0;
+	RAY->mapx = 0;
+	RAY->side = 0;
+	RAY->sidex = 0;
+	RAY->sidey = 0;
+	RAY->stepy = 0;
+	RAY->stepx = 0;
+	RAY->raydiry = 0;
+	RAY->raydirx = 0;
+	RAY->deltdistx = 0;
+	RAY->deltdisty = 0;
+	RAY->perpWallDist = 0;
+	return (1);
+}
 
 int		ft_init_color(t_file *file)
 {
@@ -32,45 +56,51 @@ int		ft_init_color(t_file *file)
 
 int		ft_init_map(t_file *file)
 {
-	if (!(FM = malloc(sizeof(t_map))))
+	if (!(MAP = malloc(sizeof(t_map))))
 	{
 		ft_free_fil(F);
 		ft_printf("Error\nMalloc map\n");
 		return (0);
 	}
-	FM->map = NULL;
-	FM->width = 0;
-	FM->height = 0;
-	FM->mapchar = NULL;
+	MAP->map = NULL;
+	MAP->width = 0;
+	MAP->height = 0;
+	MAP->mapchar = NULL;
 	return (1);
 }
 
-int		ft_init_spawn(t_file *file)
+int		ft_init_player(t_file *file)
 {
-	if (!(FS = malloc(sizeof(t_map))))
+	if (!(PLAYER = malloc(sizeof(t_player))))
 	{
 		ft_free_fil(F);
-		ft_printf("Error\nMalloc spawn\n");
+		ft_printf("Error\nMalloc player\n");
 		return (0);
 	}
-	FS->direction = 0;
-	FS->y = -1;
-	FS->x = -1;
+	PLAYER->direction = 0;
+	PLAYER->rotation = 0;
+	PLAYER->y = -1;
+	PLAYER->x = -1;
+	PLAYER->camx = 0;
+	PLAYER->diry = 0;
+	PLAYER->dirx = 0;
+	PLAYER->plany = 0;
+	PLAYER->planx = 0;
 	return (1);
 }
 
 int		ft_init_path(t_file *file)
 {
-	if (!(FP = malloc(sizeof(t_path))))
+	if (!(PATH = malloc(sizeof(t_path))))
 	{
 		ft_free_fil(F);
 		ft_printf("Error\nMalloc init\n");
 		return (0);
 	}
-	FP->north = NULL;
-	FP->south = NULL;
-	FP->east = NULL;
-	FP->west = NULL;
-	FP->sprite = NULL;
+	PATH->north = NULL;
+	PATH->south = NULL;
+	PATH->east = NULL;
+	PATH->west = NULL;
+	PATH->sprite = NULL;
 	return (1);
 }

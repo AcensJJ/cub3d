@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 02:33:41 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 07:13:23 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,7 @@
 # define PLAYER file->player
 # define RAY file->ray
 # define DRAW file->draw
+# define KEY file->key
 
 typedef struct		s_draw
 {
@@ -36,6 +37,16 @@ typedef struct		s_draw
 	int				end;
 	int				lineheight;
 }					t_draw;
+
+typedef struct		s_key
+{
+	int				up;
+	int				down;
+	int				left;
+	int				right;
+	int				mvleft;
+	int				mvright;
+}					t_key;
 
 typedef struct		s_ray
 {
@@ -108,10 +119,10 @@ typedef struct		s_file
 	struct s_player	*player;
 	struct s_ray	*ray;
 	struct s_draw	*draw;
+	struct s_key	*key;
 }					t_file;
 
 int					main(int ac, char **av);
-void				ft_cube();
 
 void				ft_free_fil(t_file *file);
 
@@ -121,6 +132,7 @@ int    				ft_init_player(t_file *file);
 int    				ft_init_path(t_file *file);
 int					ft_init_ray(t_file *file);
 int					ft_init_draw(t_file *file);
+int					ft_init_key(t_file *file);
 
 int					ft_verif_color_path(t_file *file);
 int					ft_verif_map(t_file *file);
@@ -130,6 +142,7 @@ int					ft_start_verif(t_file *file, char **av);
 int					ft_parse_cube(char	*fichier, t_file *file);
 int					ft_snakeoil(t_file *file);
 int					ft_rgbtoint(int red, int green, int blue);
+void				ft_move(t_file *file);
 
 void 				ft_resochr(char *line, t_file *file);
 void				ft_colorchr(char *line, t_file *file, int p);
@@ -137,5 +150,8 @@ void				ft_pathchr(char *line, t_file *file, int p);
 int					ft_set_line(t_file *file, char *line, int nb, int i);
 int					ft_first_line_map(char *line, int i, int nb, t_file *file);
 int					ft_config_map(int fd, char *line, t_file *file);
+int					ft_quit(t_file *file);
+int					ft_appui(int i, t_file *file);
+int					ft_relache(int i, t_file *file);
 
 #endif

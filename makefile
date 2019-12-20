@@ -7,7 +7,7 @@ MINILIBXS	=					minilibx/libmlx.a
 LIB			=					libftprintf.a
 LIBS		=					ft_printf/libftprintf.a
 SRC_PATH	=					srcs
-SRCS_NAME	= 					cube.c loop.c ft_set_color.c\
+SRCS_NAME	= 					cube.c loop.c ft_set_color.c ft_move.c\
 								ft_init.c ft_init2.c ft_config_struct.c\
 								ft_free.c ft_config_map.c\
 								ft_verif.c
@@ -16,7 +16,7 @@ LIBRARIES 	= 					$(LIBS) $(MINILIBXS)
 NAME		= 					Cub3D
 RM			= 					rm -f
 FLAGS 		= 					-Wall -Wextra -Werror -g3
-GFLAGS 		=					-Wall -Wextra -Werror -g3 -lmlx -framework OpenGL -framework AppKit\
+GFLAGS 		=					-Wall -Wextra -Werror -g3 -fsanitize=address -lmlx -framework OpenGL -framework AppKit\
 								-I$(INCLUDE_PATH)
 GFLAGS2 	=					-Wall -Wextra -Werror -g3\
 								-I$(INCLUDE_PATH)

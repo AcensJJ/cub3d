@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:50:59 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 20:16:46 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 07:13:09 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,6 +48,7 @@ void		ft_free_fil(t_file *file)
 	RAY ? free(RAY) : 0;
 	PLAYER ? free(PLAYER) : 0;
 	DRAW ? free(DRAW) : 0;
+	KEY ? free(KEY) : 0;
 	FC ? free(FC) : 0;
 	MAP ? ft_free_map(F) : 0;
 	free(F);

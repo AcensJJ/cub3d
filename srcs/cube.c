@@ -6,20 +6,14 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 00:27:12 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 07:13:06 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-int			ft_quit(t_file *file)
-{
-	mlx_destroy_window(F->mlx, F->win);
-	exit(EXIT_SUCCESS);
-}
-
-void		ft_cube(t_file *file)
+static void	ft_cube(t_file *file)
 {
 	int		bits;
 	int		sizeline;
@@ -30,8 +24,8 @@ void		ft_cube(t_file *file)
 	F->img = mlx_new_image(F->mlx, F->axe_y, F->axe_x);
 	F->imgdata = (int *)mlx_get_data_addr(F->img, &bits, &sizeline, &end);
 	mlx_loop_hook(F->mlx, ft_snakeoil, (void *)F);
-	/*mlx_hook(F->win, 2, 0, holdinput, (void *)F);
-	  mlx_hook(F->win, 3, 0, releaseinput, (void *)F);*/
+	mlx_hook(F->win, 2, 0, ft_appui, (void *)F);
+	mlx_hook(F->win, 3, 0, ft_relache, (void *)F);
 	mlx_hook(F->win, 17, 0, ft_quit, (void *)F);
 	mlx_loop(F->mlx);
 }
@@ -82,16 +76,24 @@ int			ft_parse_cube(char *fichier, t_file *file)
 		else if (!ft_config_map(fd, line, file))
 			return (0);
 	}
+	close(fd);
 	return (1);
 }
 
 int			main(int ac, char **av)
 {
 	t_file	*file;
+	int 	i;
 
 	if (ac < 2)
 	{
 		ft_printf("Error\nPas tout les arguments\n");
+		return (1);
+	}
+	i = ft_strlen(av[1]);
+	if (ft_strcmp(&av[1][i - 4], ".cub"))
+	{
+		ft_printf("Error\nPas la bonne extension\n");
 		return (1);
 	}
 	if (!(F = malloc(sizeof(t_file))))

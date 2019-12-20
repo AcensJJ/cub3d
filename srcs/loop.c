@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 02:35:28 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 07:13:14 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,7 +60,6 @@ static void	ft_wallhit(t_file *file, int i)
 		}
 		(MAP->map[RAY->mapx][RAY->mapy] == '1') ? RAY->hit = 1 : 0;
 	}
-	printf("wall hit at = x = %i, y = %i\n", RAY->mapx, RAY->mapy);
 	ft_walldist(F, i);
 }
 
@@ -113,5 +112,6 @@ static void	raycast(t_file *file)
 int			ft_snakeoil(t_file *file)
 {
 	raycast(F);
+	ft_move(F);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 16:40:56 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 18:32:48 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 01:32:49 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,7 +43,7 @@ int			ft_join_charmap(t_file *file, char *line, int i, int nb)
 			i++;
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E'
 		|| line[i] == 'W')
-			if (!(ft_verif_player_config(F, line[i], nb)))
+			if (!(ft_verif_player_config(F, line[i], (nb + 1))))
 				return (0);
 		line[i] == '\0' ? 0 : (join[++nb] = line[i]);
 		line[i] == '\0' ? 0 : i++;

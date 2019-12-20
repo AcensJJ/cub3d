@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 18:32:31 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 00:27:12 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,11 +26,9 @@ void		ft_cube(t_file *file)
 	int		end;
 
 	F->mlx = mlx_init();
-	F->win = mlx_new_window(F->mlx, F->axe_x, F->axe_y, "Have FUN");
-	F->img = mlx_new_image(F->mlx, F->axe_x, F->axe_y);
+	F->win = mlx_new_window(F->mlx, F->axe_y, F->axe_x, "Have FUN");
+	F->img = mlx_new_image(F->mlx, F->axe_y, F->axe_x);
 	F->imgdata = (int *)mlx_get_data_addr(F->img, &bits, &sizeline, &end);
-	F->imgdata[540 * 1920 + 960] = ft_rgbtoint(FC->c1, FC->c2, FC->c3);
-	mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0);
 	mlx_loop_hook(F->mlx, ft_snakeoil, (void *)F);
 	/*mlx_hook(F->win, 2, 0, holdinput, (void *)F);
 	  mlx_hook(F->win, 3, 0, releaseinput, (void *)F);*/

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:27:46 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 18:36:06 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 01:58:27 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,18 +23,22 @@ int			ft_verif_player_config(t_file *file, char line, int nb)
 	else
 	{
 		PLAYER->direction = line;
-		line == 'N' ? PLAYER->rotation = 0 : 0;
-		line == 'N' ? PLAYER->planx = 0.66 : 0;
-		line == 'W' ? PLAYER->rotation = 90 : 0;
-		line == 'W' ? PLAYER->plany = -0.66 : 0;
-		line == 'S' ? PLAYER->rotation = 180 : 0;
-		line == 'S' ? PLAYER->planx = -0.66 : 0;
-		line == 'E' ? PLAYER->rotation = 270 : 0;
-		line == 'E' ? PLAYER->plany = 0.66 : 0;
-		PLAYER->x = nb + 1;
-		PLAYER->y = ft_strcount_char(MAP->mapchar, '\n');
-		PLAYER->dirx = sin(PLAYER->rotation * M_PI / 180 + M_PI);
-		PLAYER->diry = cos(PLAYER->rotation * M_PI / 180);
+		if (line == 'N' || line == 'S')
+		{
+			PLAYER->dirx = line == 'N' ? -1 : 1;
+			PLAYER->plany = line == 'N' ? 0.66f : -0.66f;
+			PLAYER->diry = 0;
+			PLAYER->planx = 0;
+		}
+		if (line == 'W' || line == 'E')
+		{
+			PLAYER->diry = line == 'W' ? -1 : 1;
+			PLAYER->planx = line == 'W' ? -0.66f : 0.66f;
+			PLAYER->dirx = 0;
+			PLAYER->plany = 0;
+		}
+		PLAYER->x = ft_strcount_char(MAP->mapchar, '\n') + 0.5;
+		PLAYER->y = nb + 0.5;
 	}
 	return (1);
 }
@@ -115,7 +119,7 @@ int			ft_verif_map(t_file *file)
 int			ft_start_verif(t_file *file, char **av)
 {
 	if (!(ft_init_color(F) && ft_init_path(F) && ft_init_map(F)
-	&& ft_init_player(F) && ft_init_ray(F)))
+	&& ft_init_player(F) && ft_init_ray(F) && ft_init_draw(F)))
 		return (0);
 	if (!(ft_parse_cube(av[1], F)))
 		return (0);

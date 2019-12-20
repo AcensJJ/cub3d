@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:51:04 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 18:55:38 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 20:03:23 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,7 @@ int		ft_init_ray(t_file *file)
 	RAY->raydirx = 0;
 	RAY->deltdistx = 0;
 	RAY->deltdisty = 0;
-	RAY->perpWallDist = 0;
+	RAY->perpwalldist = 0;
 	return (1);
 }
 

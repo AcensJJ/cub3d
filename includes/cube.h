@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 18:55:02 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/19 20:17:24 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,6 +28,14 @@
 # define MAP file->map
 # define PLAYER file->player
 # define RAY file->ray
+# define DRAW file->draw
+
+typedef struct		s_draw
+{
+	int				drawstart;
+	int				drawend;
+	int				lineheight;
+}					t_draw;
 
 typedef struct		s_ray
 {
@@ -41,7 +49,7 @@ typedef struct		s_ray
 	int				mapy;
 	int				stepx;
 	int				stepy;
-	float			perpWallDist;
+	float			perpwalldist;
 	int				hit;
 	int				side;
 }					t_ray;
@@ -99,19 +107,20 @@ typedef struct		s_file
 	struct s_map	*map;
 	struct s_player	*player;
 	struct s_ray	*ray;
+	struct s_draw	*draw;
 }					t_file;
 
 int					main(int ac, char **av);
 void				ft_cube();
 
-void				ft_free_path(t_file *file);
-void				ft_free_map(t_file *file);
 void				ft_free_fil(t_file *file);
 
 int   				ft_init_color(t_file *file);
 int    				ft_init_map(t_file *file);
 int    				ft_init_player(t_file *file);
 int    				ft_init_path(t_file *file);
+int					ft_init_ray(t_file *file);
+int					ft_init_draw(t_file *file);
 
 int					ft_verif_color_path(t_file *file);
 int					ft_verif_map(t_file *file);

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 16:38:22 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 18:32:31 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 00:17:34 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,12 +20,12 @@ void	ft_resochr(char *line, t_file *file)
 	i = 1;
 	while (line[i] == ' ')
 		i++;
-	F->axe_x = ft_atoi((char *)line + i);
+	F->axe_y = ft_atoi((char *)line + i);
 	while (ft_isdigit(line[i]))
 		i++;
 	while (line[i] == ' ')
 		i++;
-	F->axe_y = ft_atoi((char *)line + i);
+	F->axe_x = ft_atoi((char *)line + i);
 }
 
 void	ft_colorchr(char *line, t_file *file, int p)

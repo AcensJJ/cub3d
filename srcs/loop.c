@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 02:17:22 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 02:35:28 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,21 +23,22 @@ static void	ft_walldist(t_file *file, int i)
 		(1 - RAY->stepx) / 2) / RAY->raydirx;
 	}
 	else
-	{
 		RAY->perpwalldist = (RAY->mapy - PLAYER->y +
 		(1 - RAY->stepy) / 2) / RAY->raydiry;
-	}
 	DRAW->lineheight = (int)(F->axe_x / RAY->perpwalldist);
-	DRAW->drawstart = -DRAW->lineheight / 2 + F->axe_x / 2;
-	DRAW->drawstart < 0 ? DRAW->drawstart = 0 : 0;
-	DRAW->drawend = DRAW->lineheight / 2 + F->axe_x / 2;
-	DRAW->drawend >= F->axe_x ? DRAW->drawend = F->axe_x - 1 : 0;
+	DRAW->start = -DRAW->lineheight / 2 + F->axe_x / 2;
+	DRAW->start < 0 ? DRAW->start = 0 : 0;
+	DRAW->end = DRAW->lineheight / 2 + F->axe_x / 2;
+	DRAW->end >= F->axe_x ? DRAW->end = F->axe_x - 1 : 0;
 	j = -1;
 	while (++j < F->axe_x)
 	{
-		j <= DRAW->drawstart ? F->imgdata[j * F->axe_y + i] = ft_rgbtoint(FC->f1, FC->f2, FC->f3) : 0;
-		j < DRAW->drawend && j > DRAW->drawstart ? F->imgdata[j * F->axe_y + i] = ft_rgbtoint(60, 60, 60) : 0;
-		j >= DRAW->drawend ? F->imgdata[j * F->axe_y + i] = ft_rgbtoint(FC->c1, FC->c2, FC->c3) : 0;
+		j <= DRAW->start ? F->imgdata[j * F->axe_y + i] =
+		ft_rgbtoint(FC->f1, FC->f2, FC->f3) : 0;
+		j < DRAW->end && j > DRAW->start ? F->imgdata[j * F->axe_y + i] =
+		ft_rgbtoint(60, 60, 60) : 0;
+		j >= DRAW->end ? F->imgdata[j * F->axe_y + i] =
+		ft_rgbtoint(FC->c1, FC->c2, FC->c3) : 0;
 	}
 }
 
@@ -51,7 +52,7 @@ static void	ft_wallhit(t_file *file, int i)
 			RAY->mapx += RAY->stepx;
 			RAY->side = 0;
 		}
-		else 
+		else
 		{
 			RAY->sidey += RAY->deltdisty;
 			RAY->mapy += RAY->stepy;
@@ -85,7 +86,6 @@ static void	ft_ray(t_file *file, int i)
 		RAY->stepy = 1;
 		RAY->sidey = (RAY->mapy + 1.0 - PLAYER->y) * RAY->deltdisty;
 	}
-
 	ft_wallhit(F, i);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:27:46 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 01:58:27 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 02:35:28 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,26 +20,23 @@ int			ft_verif_player_config(t_file *file, char line, int nb)
 		ft_printf("Error\nplayer\n");
 		return (0);
 	}
-	else
+	PLAYER->direction = line;
+	if (line == 'N' || line == 'S')
 	{
-		PLAYER->direction = line;
-		if (line == 'N' || line == 'S')
-		{
-			PLAYER->dirx = line == 'N' ? -1 : 1;
-			PLAYER->plany = line == 'N' ? 0.66f : -0.66f;
-			PLAYER->diry = 0;
-			PLAYER->planx = 0;
-		}
-		if (line == 'W' || line == 'E')
-		{
-			PLAYER->diry = line == 'W' ? -1 : 1;
-			PLAYER->planx = line == 'W' ? -0.66f : 0.66f;
-			PLAYER->dirx = 0;
-			PLAYER->plany = 0;
-		}
-		PLAYER->x = ft_strcount_char(MAP->mapchar, '\n') + 0.5;
-		PLAYER->y = nb + 0.5;
+		PLAYER->dirx = line == 'N' ? -1 : 1;
+		PLAYER->plany = line == 'N' ? 0.66f : -0.66f;
+		PLAYER->diry = 0;
+		PLAYER->planx = 0;
 	}
+	if (line == 'W' || line == 'E')
+	{
+		PLAYER->diry = line == 'W' ? -1 : 1;
+		PLAYER->planx = line == 'W' ? -0.66f : 0.66f;
+		PLAYER->dirx = 0;
+		PLAYER->plany = 0;
+	}
+	PLAYER->x = ft_strcount_char(MAP->mapchar, '\n') + 0.5;
+	PLAYER->y = nb + 0.5;
 	return (1);
 }
 

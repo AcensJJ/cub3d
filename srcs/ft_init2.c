@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 20:04:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 20:11:46 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 02:33:41 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,8 +21,8 @@ int		ft_init_draw(t_file *file)
 		ft_printf("Error\nMalloc ray\n");
 		return (0);
 	}
-	DRAW->drawstart = 0;
-	DRAW->drawend = 0;
+	DRAW->start = 0;
+	DRAW->end = 0;
 	DRAW->lineheight = 0;
 	return (1);
 }

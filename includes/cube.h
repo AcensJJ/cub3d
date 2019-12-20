@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/19 20:17:24 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 02:33:41 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,8 +32,8 @@
 
 typedef struct		s_draw
 {
-	int				drawstart;
-	int				drawend;
+	int				start;
+	int				end;
 	int				lineheight;
 }					t_draw;
 

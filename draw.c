@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   player.c                                         .::    .:/ .      .::   */
+/*   draw.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: vroth-di <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/11/23 18:22:06 by vroth-di     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/10 20:53:58 by vroth-di    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/20 02:33:41 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,12 +18,12 @@ void		draw_suite(t_mlx *mlx, int x)
 	DRAW->y = 0;
 	while (DRAW->y < mlx->h)
 	{
-		if (DRAW->y < DRAW->drawstart)
+		if (DRAW->y < DRAW->start)
 		{
 			IMG->ptr[DRAW->y * mlx->w + x] = mlx->ciel == 1 ? mlx->tex[5]->ptr
 			[(int)((DRAW->y * 2) * mlx->tex[5]->width + x * 2)] : mlx->ceiling;
 		}
-		if (DRAW->y >= DRAW->drawstart && DRAW->y <= DRAW->drawend)
+		if (DRAW->y >= DRAW->start && DRAW->y <= DRAW->end)
 		{
 			DRAW->d = DRAW->y * 256 - mlx->h * 128 + DRAW->lineheight * 128;
 			DRAW->texy = ((DRAW->d * mlx->tex[DRAW->texnum]->height)
@@ -35,7 +35,7 @@ void		draw_suite(t_mlx *mlx, int x)
 				[(DRAW->texy * mlx->tex[DRAW->texnum]
 				->width + DRAW->texx)];
 		}
-		if (DRAW->y > DRAW->drawend)
+		if (DRAW->y > DRAW->end)
 			IMG->ptr[DRAW->y * mlx->w + x] = mlx->floor;
 		DRAW->y++;
 	}
@@ -59,12 +59,12 @@ void		draw(t_mlx *mlx, int x)
 		DRAW->texx = mlx->tex[DRAW->texnum]->width - DRAW->texx - 1;
 	DRAW->lineheight = (int)(mlx->h / RAY->perpwalldist);
 	DRAW->lineheight > 19 * mlx->h ? DRAW->lineheight = 19 * mlx->h : 0;
-	DRAW->drawstart = -DRAW->lineheight / 2 + mlx->h / 2;
-	DRAW->drawend = DRAW->lineheight / 2 + mlx->h / 2;
-	if (DRAW->drawstart < 0)
-		DRAW->drawstart = 0;
-	if (DRAW->drawend >= mlx->h)
-		DRAW->drawend = mlx->h - 1;
+	DRAW->start = -DRAW->lineheight / 2 + mlx->h / 2;
+	DRAW->end = DRAW->lineheight / 2 + mlx->h / 2;
+	if (DRAW->start < 0)
+		DRAW->start = 0;
+	if (DRAW->end >= mlx->h)
+		DRAW->end = mlx->h - 1;
 	draw_suite(mlx, x);
 }
 

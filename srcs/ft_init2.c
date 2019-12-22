@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 20:04:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 07:13:11 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 04:44:24 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,5 +41,38 @@ int		ft_init_key(t_file *file)
 	KEY->right = 0;
 	KEY->up = 0;
 	KEY->down = 0;
+	return (1);
+}
+
+int		ft_init_sprite(t_file *file)
+{
+	if (!(SPRITE = malloc(sizeof(t_sprite))))
+	{
+		ft_free_fil(F);
+		ft_printf("Error\nMalloc sprite\n");
+		return (0);
+	}
+	SPRITE->y = -1;
+	SPRITE->x = -1;
+	SPRITE->texture = -1;
+	return (1);
+}
+
+int		ft_init_imgw(t_file *file)
+{
+	if (!(IMGW = malloc(sizeof(t_imgw))))
+	{
+		ft_free_fil(F);
+		ft_printf("Error\nMalloc image wall\n");
+		return (0);
+	}
+	IMGW->ntext = NULL;
+	IMGW->stext = NULL;
+	IMGW->wtext = NULL;
+	IMGW->etext = NULL;
+	IMGW->nimg = NULL;
+	IMGW->simg = NULL;
+	IMGW->wimg = NULL;
+	IMGW->eimg = NULL;
 	return (1);
 }

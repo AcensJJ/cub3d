@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:51:04 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 07:13:10 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 04:44:26 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,7 +78,6 @@ int		ft_init_player(t_file *file)
 		return (0);
 	}
 	PLAYER->direction = 0;
-	PLAYER->rotation = 0;
 	PLAYER->y = -1;
 	PLAYER->x = -1;
 	PLAYER->camx = 0;

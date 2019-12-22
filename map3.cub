@@ -1,10 +1,9 @@
-R 960 740
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-
-S ./path_to_the_sprite_texture
+R  960    740
+NO   ./textures/barrel_wood.xpm
+SO  ./textures/brick.xpm
+WE      ./textures/stone.xpm
+EA  ./textures/wood.xpm
+S    ./textures/wood.xpm
 F 128,223,255
 C 0,153,51
 

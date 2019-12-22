@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:27:46 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 07:13:13 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 03:05:30 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -117,7 +117,7 @@ int			ft_start_verif(t_file *file, char **av)
 {
 	if (!(ft_init_color(F) && ft_init_path(F) && ft_init_map(F)
 	&& ft_init_player(F) && ft_init_ray(F) && ft_init_key(F)
-	&& ft_init_draw(F)))
+	&& ft_init_draw(F) && ft_init_sprite(F) && ft_init_imgw(F)))
 		return (0);
 	if (!(ft_parse_cube(av[1], F)))
 		return (0);
@@ -127,7 +127,8 @@ int			ft_start_verif(t_file *file, char **av)
 		ft_printf("Error\nMalloc split\n");
 		return (0);
 	}
-	if (!(ft_verif_color_path(F) && ft_verif_map(F)))
+	if (!(ft_verif_color_path(F) && ft_verif_map(F) && ft_verif_reso(F)
+	&& ft_verif_path_img(F)))
 		return (0);
 	return (1);
 }

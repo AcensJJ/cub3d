@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 07:13:06 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 04:44:22 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,13 @@ static void	ft_cube(t_file *file)
 	int		sizeline;
 	int		end;
 
+	F->axe_x /= 2;
+	F->axe_y /= 2;
 	F->mlx = mlx_init();
+	IMGW->etext = ft_readxpm(F, PATH->east, 'E');
+	IMGW->wtext = ft_readxpm(F, PATH->west, 'W');
+	IMGW->ntext = ft_readxpm(F, PATH->north, 'N');
+	IMGW->stext = ft_readxpm(F, PATH->south, 'S');
 	F->win = mlx_new_window(F->mlx, F->axe_y, F->axe_x, "Have FUN");
 	F->img = mlx_new_image(F->mlx, F->axe_y, F->axe_x);
 	F->imgdata = (int *)mlx_get_data_addr(F->img, &bits, &sizeline, &end);
@@ -33,9 +39,9 @@ static void	ft_cube(t_file *file)
 static int	ft_parse_cube2(t_file *file, char *line, int i)
 {
 	if (!ft_strncmp(&line[i], "C ", 2))
-		ft_colorchr(&line[i], F, 1);
+		ft_colorchr(&line[i], F, 1, 1);
 	else if (!ft_strncmp(&line[i], "F ", 2))
-		ft_colorchr(&line[i], F, 0);
+		ft_colorchr(&line[i], F, 0, 1);
 	else if (!ft_strncmp(&line[i], "SO ", 3) && !PATH->south)
 		ft_pathchr(&line[i], F, 0);
 	else if (!ft_strncmp(&line[i], "NO ", 3) && !PATH->north)

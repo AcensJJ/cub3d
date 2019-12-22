@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/20 07:13:23 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/22 04:44:37 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,6 +30,29 @@
 # define RAY file->ray
 # define DRAW file->draw
 # define KEY file->key
+# define SPRITE file->sprite
+# define IMGW file->imgw
+
+typedef struct		s_imgw
+{
+	int				*ntext;
+	int				*stext;
+	int				*wtext;
+	int				*etext;
+	void			*nimg;
+	void			*simg;
+	void			*wimg;
+	void			*eimg;
+	int				width[5];
+	int				height[5];
+}					t_imgw;
+
+typedef struct		s_sprite
+{
+	float			y;
+	float			x;
+	int				texture;
+}					t_sprite;
 
 typedef struct		s_draw
 {
@@ -75,7 +98,6 @@ typedef struct		s_player
 	float			dirx;
 	float			diry;
 	float			camx;
-	float			rotation;
 }					t_player;
 
 typedef struct		s_map
@@ -120,6 +142,8 @@ typedef struct		s_file
 	struct s_ray	*ray;
 	struct s_draw	*draw;
 	struct s_key	*key;
+	struct s_sprite	*sprite;
+	struct s_imgw	*imgw;
 }					t_file;
 
 int					main(int ac, char **av);
@@ -133,19 +157,28 @@ int    				ft_init_path(t_file *file);
 int					ft_init_ray(t_file *file);
 int					ft_init_draw(t_file *file);
 int					ft_init_key(t_file *file);
+int					ft_init_sprite(t_file *file);
+int					ft_init_imgw(t_file *file);
 
 int					ft_verif_color_path(t_file *file);
 int					ft_verif_map(t_file *file);
+int					ft_verif_reso(t_file *file);
 int					ft_verif_player_config(t_file *file, char line, int nb);
 int					ft_start_verif(t_file *file, char **av);
+int					ft_verif_path_img(t_file *file);
 
 int					ft_parse_cube(char	*fichier, t_file *file);
+int					*ft_readxpm(t_file *file, char *str, char c);
 int					ft_snakeoil(t_file *file);
 int					ft_rgbtoint(int red, int green, int blue);
 void				ft_move(t_file *file);
 
+void				ft_printwall(t_file *file, int j, int i);
+void				ft_walldist(t_file *file, int i);
+void				ft_wallhit(t_file *file, int i);
+
 void 				ft_resochr(char *line, t_file *file);
-void				ft_colorchr(char *line, t_file *file, int p);
+void				ft_colorchr(char *line, t_file *file, int p, int i);
 void				ft_pathchr(char *line, t_file *file, int p);
 int					ft_set_line(t_file *file, char *line, int nb, int i);
 int					ft_first_line_map(char *line, int i, int nb, t_file *file);

@@ -6,14 +6,14 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 06:09:01 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/23 22:41:43 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-static void	ft_ray(t_file *file, int i)
+static void	ft_ray(t_file *file, float i)
 {
 	if (RAY->raydirx < 0)
 	{
@@ -40,7 +40,7 @@ static void	ft_ray(t_file *file, int i)
 
 static void	raycast(t_file *file)
 {
-	int	i;
+	float	i;
 
 	i = 0;
 	while (i < F->axe_y)
@@ -48,7 +48,7 @@ static void	raycast(t_file *file)
 		RAY->hit = 0;
 		RAY->mapx = (int)PLAYER->x;
 		RAY->mapy = (int)PLAYER->y;
-		PLAYER->camx = 2 * i / (float)F->axe_y - 1;
+		PLAYER->camx = 2 * i / F->axe_y - 1;
 		RAY->raydirx = PLAYER->dirx + PLAYER->planx * PLAYER->camx;
 		RAY->raydiry = PLAYER->diry + PLAYER->plany * PLAYER->camx;
 		RAY->deltdistx = fabs(1 / RAY->raydirx);

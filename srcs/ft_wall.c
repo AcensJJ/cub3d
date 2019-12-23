@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/23 21:54:53 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/23 22:27:00 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,9 +39,9 @@ int			*ft_readxpm(t_file *file, char *str, char c)
 	return (data);
 }
 
-void		ft_walldist(t_file *file, int i)
+void		ft_walldist(t_file *file, float i)
 {
-	int j;
+	float j;
 
 	if (RAY->side == 0)
 	{
@@ -58,18 +58,19 @@ void		ft_walldist(t_file *file, int i)
 	DRAW->end = DRAW->lineheight / 2 + F->axe_x / 2;
 	DRAW->endneg = (DRAW->end >= F->axe_x ? DRAW->end - (F->axe_x - 1) : 0);
 	DRAW->end >= F->axe_x ? DRAW->end = F->axe_x - 1 : 0;
-	j = -1;
-	while (++j < F->axe_x)
+	j = 0;
+	while (j < F->axe_x)
 	{
-		j < DRAW->start ? F->imgdata[j * F->axe_y + i] =
+		j < DRAW->start ? F->imgdata[(int)(j * F->axe_y + i)] =
 		ft_rgbtoint(FC->f1, FC->f2, FC->f3) : 0;
 		j >= DRAW->start && j <= DRAW->end ? ft_printwall(F, j, i) : 0;
-		j > DRAW->end ? F->imgdata[j * F->axe_y + i] =
+		j > DRAW->end ? F->imgdata[(int)(j * F->axe_y + i)] =
 		ft_rgbtoint(FC->c1, FC->c2, FC->c3) : 0;
+		j++;
 	}
 }
 
-void		ft_wallhit(t_file *file, int i)
+void		ft_wallhit(t_file *file, float i)
 {
 	while (RAY->hit == 0)
 	{

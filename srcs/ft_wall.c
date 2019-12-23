@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 06:06:57 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/23 21:54:53 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,8 +53,10 @@ void		ft_walldist(t_file *file, int i)
 		(1 - RAY->stepy) / 2) / RAY->raydiry;
 	DRAW->lineheight = (int)(F->axe_x / RAY->perpwalldist);
 	DRAW->start = -DRAW->lineheight / 2 + F->axe_x / 2;
+	DRAW->startneg = (DRAW->start < 0 ? -DRAW->start : 0);
 	DRAW->start < 0 ? DRAW->start = 0 : 0;
 	DRAW->end = DRAW->lineheight / 2 + F->axe_x / 2;
+	DRAW->endneg = (DRAW->end >= F->axe_x ? DRAW->end - (F->axe_x - 1) : 0);
 	DRAW->end >= F->axe_x ? DRAW->end = F->axe_x - 1 : 0;
 	j = -1;
 	while (++j < F->axe_x)

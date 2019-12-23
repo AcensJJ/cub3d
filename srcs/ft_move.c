@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_move.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nepage-l <nepage-l@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/20 04:39:55 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/21 12:01:36 by nepage-l    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/23 14:43:04 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ void		ft_move(t_file *file)
 	float rotspeed;
 
 	movespeed = 0.050;
-	rotspeed = 0.025;
+	rotspeed = 0.050;
 	if (KEY->up)
     {
     	if ((MAP->map[(int)(PLAYER->x + PLAYER->dirx * movespeed)][(int)(PLAYER->y)] != '1')

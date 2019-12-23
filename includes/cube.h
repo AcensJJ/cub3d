@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 04:44:37 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/12/23 21:51:04 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,7 +57,9 @@ typedef struct		s_sprite
 typedef struct		s_draw
 {
 	int				start;
+	int				startneg;
 	int				end;
+	int				endneg;
 	int				lineheight;
 }					t_draw;
 

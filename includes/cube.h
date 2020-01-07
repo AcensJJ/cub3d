@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 16:29:44 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 16:36:01 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -172,7 +172,7 @@ void				ft_move(t_file *file);
 int					ft_appui(int i, t_file *file);
 int					ft_relache(int i, t_file *file);
 
-int					*ft_readxpm(t_file *file, char *str, char c);
+int					*ft_readxpm(t_file *file, char *str, int n);
 void				draw_suite(t_file *file, int x, int texnum);
 void				draw(t_file *file, int x);
 void				hit_wall(t_file *file);

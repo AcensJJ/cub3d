@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_keys.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nepage-l <nepage-l@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/20 05:44:25 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/21 12:01:35 by nepage-l    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 16:38:20 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,6 +18,7 @@ int			ft_quit(t_file *file)
 	mlx_destroy_window(F->mlx, F->win);
 	ft_free_fil(F);
 	exit(EXIT_SUCCESS);
+	return (0);
 }
 
 int			ft_appui(int i, t_file *file)

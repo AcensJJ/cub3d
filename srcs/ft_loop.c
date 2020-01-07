@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 16:27:53 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 16:45:59 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,7 +62,7 @@ void		raycast(t_file *file)
 	}
 //	draw_sprite(mlx, buffer);
 //	if (mlx->save == 0)
-		mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0);
+	mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0);
 }
 
 int			ft_snakeoil(t_file *file)

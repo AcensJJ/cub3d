@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 15:17:55 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 16:00:28 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,13 +29,17 @@ int			*ft_readxpm(t_file *file, char *str, char c)
 		&IMGW->height[1])))
 			data = (int *)mlx_get_data_addr(IMGW->img[1], &bits, &sl, &endian);
 	if (c == 'E')
-		if ((IMGW->img[2] = mlx_xpm_file_to_image(F->mlx, str, &(IMGW->width[2]),
-		&(IMGW->height[2]))))
+		if ((IMGW->img[2] = mlx_xpm_file_to_image(F->mlx, str, &IMGW->width[2],
+		&IMGW->height[2])))
 			data = (int *)mlx_get_data_addr(IMGW->img[2], &bits, &sl, &endian);
 	if (c == 'W')
 		if ((IMGW->img[3] = mlx_xpm_file_to_image(F->mlx, str, &IMGW->width[3],
 		&IMGW->height[3])))
 			data = (int *)mlx_get_data_addr(IMGW->img[3], &bits, &sl, &endian);
+	if (c == 'Z')
+		if ((IMGW->img[4] = mlx_xpm_file_to_image(F->mlx, str, &IMGW->width[4],
+		&IMGW->height[4])))
+			data = (int *)mlx_get_data_addr(IMGW->img[4], &bits, &sl, &endian);
 	return (data);
 }
 

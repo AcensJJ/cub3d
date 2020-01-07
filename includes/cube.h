@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 15:12:02 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 16:00:52 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,17 +43,16 @@ typedef struct		s_imgw
 
 typedef struct		s_sprite
 {
-	float			y;
-	float			x;
-	int				texture;
+	int				y;
+	int				x;
+	struct s_sprite	*next;
+
 }					t_sprite;
 
 typedef struct		s_draw
 {
 	int				start;
-	int				startneg;
 	int				end;
-	int				endneg;
 	int				lineheight;
 }					t_draw;
 
@@ -153,7 +152,7 @@ int    				ft_init_path(t_file *file);
 int					ft_init_ray(t_file *file);
 int					ft_init_draw(t_file *file);
 int					ft_init_key(t_file *file);
-int					ft_init_sprite(t_file *file);
+int					ft_init_sprite(t_file *file, int x, int y);
 int					ft_init_imgw(t_file *file);
 
 int					ft_verif_color_path(t_file *file);

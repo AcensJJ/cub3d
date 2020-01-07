@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 20:04:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 15:15:27 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 16:00:28 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,9 +22,7 @@ int		ft_init_draw(t_file *file)
 		return (0);
 	}
 	DRAW->start = 0;
-	DRAW->startneg = 0;
 	DRAW->end = 0;
-	DRAW->endneg = 0;
 	DRAW->lineheight = 0;
 	return (1);
 }
@@ -46,7 +44,7 @@ int		ft_init_key(t_file *file)
 	return (1);
 }
 
-int		ft_init_sprite(t_file *file)
+int		ft_init_sprite(t_file *file, int x, int y)
 {
 	if (!(SPRITE = malloc(sizeof(t_sprite))))
 	{
@@ -54,9 +52,9 @@ int		ft_init_sprite(t_file *file)
 		ft_printf("Error\nMalloc sprite\n");
 		return (0);
 	}
-	SPRITE->y = -1;
-	SPRITE->x = -1;
-	SPRITE->texture = -1;
+	SPRITE->y = y;
+	SPRITE->x = x;
+	SPRITE->next = NULL;
 	return (1);
 }
 
@@ -72,9 +70,11 @@ int		ft_init_imgw(t_file *file)
 	IMGW->text[1] = NULL;
 	IMGW->text[2] = NULL;
 	IMGW->text[3] = NULL;
+	IMGW->text[4] = NULL;
 	IMGW->img[0] = NULL;
 	IMGW->img[1] = NULL;
 	IMGW->img[2] = NULL;
 	IMGW->img[3] = NULL;
+	IMGW->img[4] = NULL;
 	return (1);
 }

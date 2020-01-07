@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 16:00:52 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 16:29:44 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,6 +51,9 @@ typedef struct		s_sprite
 
 typedef struct		s_draw
 {
+	double			d;
+	int				texx;
+	int				texy;
 	int				start;
 	int				end;
 	int				lineheight;
@@ -163,23 +166,29 @@ int					ft_start_verif(t_file *file, char **av);
 int					ft_verif_path_img(t_file *file);
 
 int					ft_parse_cube(char	*fichier, t_file *file);
-int					*ft_readxpm(t_file *file, char *str, char c);
-int					ft_snakeoil(t_file *file);
 int					ft_rgbtoint(int red, int green, int blue);
-void				ft_move(t_file *file);
 
-void				ft_printwall(t_file *file, int j, int i);
-void				ft_walldist(t_file *file, int i);
-void				ft_wallhit(t_file *file, int i);
+void				ft_move(t_file *file);
+int					ft_appui(int i, t_file *file);
+int					ft_relache(int i, t_file *file);
+
+int					*ft_readxpm(t_file *file, char *str, char c);
+void				draw_suite(t_file *file, int x, int texnum);
+void				draw(t_file *file, int x);
+void				hit_wall(t_file *file);
+
+void				ray_cast_suite(t_file *file);
+void				raycast(t_file *file);
+int					ft_snakeoil(t_file *file);
 
 void 				ft_resochr(char *line, t_file *file);
 void				ft_colorchr(char *line, t_file *file, int p, int i);
 void				ft_pathchr(char *line, t_file *file, int p);
+
 int					ft_set_line(t_file *file, char *line, int nb, int i);
 int					ft_first_line_map(char *line, int i, int nb, t_file *file);
 int					ft_config_map(int fd, char *line, t_file *file);
+
 int					ft_quit(t_file *file);
-int					ft_appui(int i, t_file *file);
-int					ft_relache(int i, t_file *file);
 
 #endif

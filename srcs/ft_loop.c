@@ -6,14 +6,14 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 15:07:06 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 16:27:53 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-static void	ft_ray(t_file *file, int i)
+void		ray_cast_suite(t_file *file)
 {
 	if (RAY->raydirx < 0)
 	{
@@ -35,33 +35,38 @@ static void	ft_ray(t_file *file, int i)
 		RAY->stepy = 1;
 		RAY->sidey = (RAY->mapy + 1.0 - PLAYER->y) * RAY->deltdisty;
 	}
-	ft_wallhit(F, i);
 }
 
-static void	raycast(t_file *file)
+void		raycast(t_file *file)
 {
-	int	i;
+	int		i;
 
 	i = 0;
+	RAY->mapx = (int)PLAYER->x;
+	RAY->mapy = (int)PLAYER->y;
+	mlx_clear_window(F->mlx, F->win);
 	while (i < F->axe_y)
 	{
 		RAY->hit = 0;
-		RAY->mapx = (int)PLAYER->x;
-		RAY->mapy = (int)PLAYER->y;
-		PLAYER->camx = 2 * i / (float)F->axe_y - 1;
+		PLAYER->camx = 2 * i / (double)F->axe_y - 1;
 		RAY->raydirx = PLAYER->dirx + PLAYER->planx * PLAYER->camx;
 		RAY->raydiry = PLAYER->diry + PLAYER->plany * PLAYER->camx;
+		RAY->mapx = (int)PLAYER->x;
+		RAY->mapy = (int)PLAYER->y;
 		RAY->deltdistx = fabs(1 / RAY->raydirx);
 		RAY->deltdisty = fabs(1 / RAY->raydiry);
-		ft_ray(file, i);
+		ray_cast_suite(file);
+		hit_wall(file);
+		draw(file, i);
 		i++;
 	}
-	mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0);
+//	draw_sprite(mlx, buffer);
+//	if (mlx->save == 0)
+		mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0);
 }
 
 int			ft_snakeoil(t_file *file)
 {
-	//mlx_clear_window(F->mlx, F->win);
 	raycast(F);
 	ft_move(F);
 	return (1);

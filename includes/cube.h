@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/23 23:10:02 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 15:12:02 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,14 +35,8 @@
 
 typedef struct		s_imgw
 {
-	int				*ntext;
-	int				*stext;
-	int				*wtext;
-	int				*etext;
-	void			*nimg;
-	void			*simg;
-	void			*wimg;
-	void			*eimg;
+	int				*text[5];
+	void			*img[5];
 	int				width[5];
 	int				height[5];
 }					t_imgw;
@@ -175,9 +169,9 @@ int					ft_snakeoil(t_file *file);
 int					ft_rgbtoint(int red, int green, int blue);
 void				ft_move(t_file *file);
 
-void				ft_printwall(t_file *file, float j, float i);
-void				ft_walldist(t_file *file, float i);
-void				ft_wallhit(t_file *file, float i);
+void				ft_printwall(t_file *file, int j, int i);
+void				ft_walldist(t_file *file, int i);
+void				ft_wallhit(t_file *file, int i);
 
 void 				ft_resochr(char *line, t_file *file);
 void				ft_colorchr(char *line, t_file *file, int p, int i);

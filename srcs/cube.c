@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 04:44:22 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 15:10:18 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,10 +22,10 @@ static void	ft_cube(t_file *file)
 	F->axe_x /= 2;
 	F->axe_y /= 2;
 	F->mlx = mlx_init();
-	IMGW->etext = ft_readxpm(F, PATH->east, 'E');
-	IMGW->wtext = ft_readxpm(F, PATH->west, 'W');
-	IMGW->ntext = ft_readxpm(F, PATH->north, 'N');
-	IMGW->stext = ft_readxpm(F, PATH->south, 'S');
+	IMGW->text[2] = ft_readxpm(F, PATH->east, 'E');
+	IMGW->text[3] = ft_readxpm(F, PATH->west, 'W');
+	IMGW->text[0] = ft_readxpm(F, PATH->north, 'N');
+	IMGW->text[1] = ft_readxpm(F, PATH->south, 'S');
 	F->win = mlx_new_window(F->mlx, F->axe_y, F->axe_x, "Have FUN");
 	F->img = mlx_new_image(F->mlx, F->axe_y, F->axe_x);
 	F->imgdata = (int *)mlx_get_data_addr(F->img, &bits, &sizeline, &end);

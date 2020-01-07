@@ -6,105 +6,52 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/23 23:16:08 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 15:19:02 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-int		get_path_colorn(t_file *file, float j)
-{
-	float	max;
-	float	percent;
-	float	y;
-	float 	sidetmp;
-	float 	raytmp;
+void		get_path_color(t_file *file, int j, int i, int nb)
+{	
+	double d;
+	int texx;
+	int texy;
+	int wallx;
 
-	sidetmp = (int)(RAY->sidey * 1000000);
-	raytmp = (int)(RAY->raydiry * 1000000);
-	sidetmp /= 1000000;
-	raytmp /= 1000000;
-	y = sidetmp * raytmp + PLAYER->y;
-	max = (DRAW->end + DRAW->startneg) - (DRAW->start - DRAW->endneg);
-	percent = j -  DRAW->start + DRAW->startneg;
-	percent /= max;
-	return (IMGW->ntext[(int)(IMGW->width[0] * percent + (int)y)]);
+	wallx = (RAY->side == 0 ? PLAYER->y + RAY->perpwalldist * RAY->raydiry :
+	PLAYER->x + RAY->perpwalldist * RAY->raydirx);
+	wallx -= floor(wallx);
+	texx = (int)(wallx * (double)(IMGW->width[nb]));
+    if (RAY->side == 0 && RAY->raydirx > 0)
+		texx = IMGW->width[nb] - texx - 1;
+    if (RAY->side == 1 && RAY->raydiry < 0)
+		texx = IMGW->width[nb] - texx - 1;
+	d = j * 256 - F->axe_x * 128 + DRAW->lineheight * 128;
+	texy = ((d * IMGW->height[nb])
+	/ DRAW->lineheight) / 256;
+	texy < 0 ? texy = 0 : 0;
+	if (IMGW->height[nb] * IMGW->width[nb]
+		> (texy * IMGW->width[nb] + texx))
+		F->imgdata[(int)(j * F->axe_y + i)] = IMGW->text[nb]
+		[(texy * IMGW->width[nb] + texx)];
 }
 
-int		get_path_colors(t_file *file, float j)
-{
-	float	max;
-	float	percent;
-	float	y;
-	float 	sidetmp;
-	float 	raytmp;
-
-	sidetmp = (int)(RAY->sidey * 10000);
-	raytmp = (int)(RAY->raydiry * 10000);
-	sidetmp /= 10000;
-	raytmp /= 10000;
-	y = sidetmp * raytmp + PLAYER->y;
-	max = (DRAW->end + DRAW->startneg) - (DRAW->start - DRAW->endneg);
-	percent = j -  DRAW->start + DRAW->startneg;
-	percent /= max;
-	return (IMGW->stext[(int)(IMGW->width[1] * percent + (int)y)]);
-}
-
-int		get_path_colore(t_file *file, float j)
-{
-	float	max;
-	float	percent;
-	float	x;
-	float 	sidetmp;
-	float 	raytmp;
-
-	sidetmp = (int)(RAY->sidex * 10000);
-	raytmp = (int)(RAY->raydirx * 10000);
-	sidetmp /= 10000;
-	raytmp /= 10000;
-	x = sidetmp * raytmp + PLAYER->x;
-	max = (DRAW->end + DRAW->startneg) - (DRAW->start - DRAW->endneg);
-	percent = j -  DRAW->start + DRAW->startneg;
-	percent /= max;
-	return (IMGW->etext[(int)(IMGW->width[2] * percent + (int)x)]);
-}
-
-int		get_path_colorw(t_file *file, float j)
-{
-	float	max;
-	float	percent;
-	float	x;
-	float 	sidetmp;
-	float 	raytmp;
-
-	sidetmp = (int)(RAY->sidex * 1000);
-	raytmp = (int)(RAY->raydirx * 1000);
-	sidetmp /= 1000;
-	raytmp /= 1000;
-	x = sidetmp * raytmp + PLAYER->x;
-	max = (DRAW->end + DRAW->startneg) - (DRAW->start - DRAW->endneg);
-	percent = j -  DRAW->start + DRAW->startneg;
-	percent /= max;
-	return (IMGW->wtext[(int)(IMGW->width[2] * percent + (int)x)]);
-}
-
-void	ft_printwall(t_file *file, float j, float i)
+void	ft_printwall(t_file *file, int j, int i)
 {
 	if (RAY->side == 0)
 	{
 		if (RAY->raydirx < 0)
-			F->imgdata[(int)(j * F->axe_y + i)] = get_path_colorn(file, j);
+			get_path_color(file, j, i, 0);
 		else
-		{
-			F->imgdata[(int)(j * F->axe_y + i)] = get_path_colors(file, j);
-		}
+			get_path_color(file, j, i, 1);
 	}
 	else
 	{
 		if (RAY->raydiry < 0)
-			F->imgdata[(int)(j * F->axe_y + i)] = get_path_colorw(file, j);
+			get_path_color(file, j, i, 3);
 		else
-			F->imgdata[(int)(j * F->axe_y + i)] = get_path_colore(file, j);
+			get_path_color(file, j, i, 2);
 	}
 }

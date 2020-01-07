@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:50:59 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 04:44:44 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 15:24:02 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,11 +44,10 @@ static void	ft_free_map(t_file *file)
 
 static void	ft_destroy(t_file *file)
 {
-	IMGW->ntext ? 1 : 0;
-	// IMGW->ntext ? mlx_destroy_image(F->mlx, IMGW->ntext) : 0;
-	// IMGW->stext ? mlx_destroy_image(F->mlx, IMGW->stext) : 0;
-	// IMGW->etext ? mlx_destroy_image(F->mlx, IMGW->etext) : 0;
-	// IMGW->wtext ? mlx_destroy_image(F->mlx, IMGW->wtext) : 0;
+	IMGW->img[0] ? mlx_destroy_image(F->mlx, IMGW->img[0]) : 0;
+	IMGW->img[1] ? mlx_destroy_image(F->mlx, IMGW->img[1]) : 0;
+	IMGW->img[2] ? mlx_destroy_image(F->mlx, IMGW->img[2]) : 0;
+	IMGW->img[3] ? mlx_destroy_image(F->mlx, IMGW->img[3]) : 0;
 }
 
 void		ft_free_fil(t_file *file)

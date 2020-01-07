@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 20:04:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/23 21:51:25 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/07 15:15:27 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,13 +68,13 @@ int		ft_init_imgw(t_file *file)
 		ft_printf("Error\nMalloc image wall\n");
 		return (0);
 	}
-	IMGW->ntext = NULL;
-	IMGW->stext = NULL;
-	IMGW->wtext = NULL;
-	IMGW->etext = NULL;
-	IMGW->nimg = NULL;
-	IMGW->simg = NULL;
-	IMGW->wimg = NULL;
-	IMGW->eimg = NULL;
+	IMGW->text[0] = NULL;
+	IMGW->text[1] = NULL;
+	IMGW->text[2] = NULL;
+	IMGW->text[3] = NULL;
+	IMGW->img[0] = NULL;
+	IMGW->img[1] = NULL;
+	IMGW->img[2] = NULL;
+	IMGW->img[3] = NULL;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 10:38:27 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 16:29:39 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 20:49:43 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -93,6 +93,7 @@ void				ft_sprit_verif_lst(t_file *file)
 		else
 			d =
 				(F->R->mapy - F->PL->y + (1 - F->R->stepy) / 2) / F->R->raydiry;
+		d += 0.5;
 		if (ft_sprit_add_lst(F, ft_init_sprite(F, F->R->mapx, F->R->mapy, d)))
 		{
 			ft_printf("Error\nCreate sprite\n");

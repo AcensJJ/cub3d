@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 10:38:27 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 16:13:16 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 16:29:39 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ static t_sprite		*ft_sprit_add_lstorder(t_file *file, t_sprite *sprite)
 	beg_lst = F->SP;
 	while (beg_lst->next != NULL)
 	{
-		if ((beg_lst->dist - sprite->dist) < 0)
+		if (beg_lst->dist < sprite->dist)
 			return (beg_lst);
 		beg_lst = beg_lst->next;
 	}
@@ -36,7 +36,7 @@ static void			ft_sprit_config_add_lst(t_file *file, t_sprite *sprite)
 	beg_lst = ft_sprit_add_lstorder(F, sprite);
 	if (F->SP == beg_lst)
 	{
-		if ((beg_lst->dist - sprite->dist) < 0)
+		if (beg_lst->dist < sprite->dist)
 		{
 			sprite->next = beg_lst;
 			F->SP = sprite;
@@ -46,7 +46,7 @@ static void			ft_sprit_config_add_lst(t_file *file, t_sprite *sprite)
 	}
 	else
 	{
-		if ((beg_lst->dist - sprite->dist) > 0)
+		if (beg_lst->dist > sprite->dist)
 			beg_lst->next = sprite;
 		else
 		{

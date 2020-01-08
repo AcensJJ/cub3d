@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 13:32:26 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 19:23:02 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ static void		ft_draw_suite(t_file *file, int x, int texnum)
 				F->imgdata[y * F->axe_y + x] = F->IW->text[texnum][(F->D->texy
 				* F->IW->width[texnum] + F->D->texx)];
 		}
-		if (y >= F->D->end)
+		if (y > F->D->end)
 			F->imgdata[y * F->axe_y + x] =
 			ft_rgbtoint(F->FC->c1, F->FC->c2, F->FC->c3);
 		y++;

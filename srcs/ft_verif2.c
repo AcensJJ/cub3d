@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:27:46 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/22 04:44:32 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 11:18:04 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,8 +27,8 @@ int			ft_verif_reso(t_file *file)
 
 int			ft_verif_path_img(t_file *file)
 {
-	if (open(PATH->east, O_RDONLY) < 0 || open(PATH->north, O_RDONLY) < 0 ||
-	open(PATH->west, O_RDONLY) < 0 || open(PATH->south, O_RDONLY) < 0)
+	if (open(F->PA->east, O_RDONLY) < 0 || open(F->PA->north, O_RDONLY) < 0 ||
+	open(F->PA->west, O_RDONLY) < 0 || open(F->PA->south, O_RDONLY) < 0)
 	{
 		ft_printf("Error\nMauvais path\n");
 		ft_free_fil(F);

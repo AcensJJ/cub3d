@@ -6,43 +6,43 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:50:59 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 16:00:30 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 11:31:05 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-static void	ft_free_sprite(t_file *file)
+void		ft_free_sprite(t_file *file)
 {
 	t_sprite *beg_lst;
 	t_sprite *temp;
 
-	if (SPRITE == NULL)
+	if (F->SP == NULL)
 		return ;
-	beg_lst = SPRITE;
+	beg_lst = F->SP;
 	while (beg_lst)
 	{
 		temp = beg_lst->next;
 		free(beg_lst);
 		beg_lst = temp;
 	}
-	SPRITE = NULL;
+	F->SP = NULL;
 }
 
 static void	ft_free_path(t_file *file)
 {
-	if (PATH->north)
-		free(PATH->north);
-	if (PATH->south)
-		free(PATH->south);
-	if (PATH->east)
-		free(PATH->east);
-	if (PATH->west)
-		free(PATH->west);
-	if (PATH->sprite)
-		free(PATH->sprite);
-	free(PATH);
+	if (F->PA->north)
+		free(F->PA->north);
+	if (F->PA->south)
+		free(F->PA->south);
+	if (F->PA->east)
+		free(F->PA->east);
+	if (F->PA->west)
+		free(F->PA->west);
+	if (F->PA->sprite)
+		free(F->PA->sprite);
+	free(F->PA);
 }
 
 static void	ft_free_map(t_file *file)
@@ -50,35 +50,35 @@ static void	ft_free_map(t_file *file)
 	int i;
 
 	i = -1;
-	free(MAP->mapchar);
-	if (MAP->map)
+	free(F->M->mapchar);
+	if (F->M->map)
 	{
-		while (MAP->map[++i])
-			free(MAP->map[i]);
+		while (F->M->map[++i])
+			free(F->M->map[i]);
 	}
-	free(MAP);
+	free(F->M);
 }
 
 static void	ft_destroy(t_file *file)
 {
-	IMGW->img[0] ? mlx_destroy_image(F->mlx, IMGW->img[0]) : 0;
-	IMGW->img[1] ? mlx_destroy_image(F->mlx, IMGW->img[1]) : 0;
-	IMGW->img[2] ? mlx_destroy_image(F->mlx, IMGW->img[2]) : 0;
-	IMGW->img[3] ? mlx_destroy_image(F->mlx, IMGW->img[3]) : 0;
-	IMGW->img[4] ? mlx_destroy_image(F->mlx, IMGW->img[4]) : 0;
+	F->IW->img[0] ? mlx_destroy_image(F->mlx, F->IW->img[0]) : 0;
+	F->IW->img[1] ? mlx_destroy_image(F->mlx, F->IW->img[1]) : 0;
+	F->IW->img[2] ? mlx_destroy_image(F->mlx, F->IW->img[2]) : 0;
+	F->IW->img[3] ? mlx_destroy_image(F->mlx, F->IW->img[3]) : 0;
+	F->IW->img[4] ? mlx_destroy_image(F->mlx, F->IW->img[4]) : 0;
 }
 
 void		ft_free_fil(t_file *file)
 {
-	PATH ? ft_free_path(F) : 0;
-	RAY ? free(RAY) : 0;
-	PLAYER ? free(PLAYER) : 0;
-	DRAW ? free(DRAW) : 0;
-	KEY ? free(KEY) : 0;
-	FC ? free(FC) : 0;
-	MAP ? ft_free_map(F) : 0;
-	SPRITE ? ft_free_sprite(F) : 0;
-	IMGW ? ft_destroy(F) : 0;
-	IMGW ? free(IMGW) : 0;
+	F->PA ? ft_free_path(F) : 0;
+	F->R ? free(F->R) : 0;
+	F->PL? free(F->PL) : 0;
+	F->D ? free(F->D) : 0;
+	F->K ? free(F->K) : 0;
+	F->FC ? free(F->FC) : 0;
+	F->M ? ft_free_map(F) : 0;
+	F->SP ? ft_free_sprite(F) : 0;
+	F->IW ? ft_destroy(F) : 0;
+	F->IW ? free(F->IW) : 0;
 	free(F);
 }

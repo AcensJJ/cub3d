@@ -6,75 +6,78 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 20:04:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 16:00:28 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 11:26:19 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-int		ft_init_draw(t_file *file)
+int			ft_init_draw(t_file *file)
 {
-	if (!(DRAW = malloc(sizeof(t_draw))))
+	if (!(F->D = malloc(sizeof(t_draw))))
 	{
 		ft_free_fil(F);
 		ft_printf("Error\nMalloc ray\n");
 		return (0);
 	}
-	DRAW->start = 0;
-	DRAW->end = 0;
-	DRAW->lineheight = 0;
+	F->D->start = 0;
+	F->D->end = 0;
+	F->D->lineheight = 0;
 	return (1);
 }
 
-int		ft_init_key(t_file *file)
+int			ft_init_key(t_file *file)
 {
-	if (!(KEY = malloc(sizeof(t_key))))
+	if (!(F->K = malloc(sizeof(t_key))))
 	{
 		ft_free_fil(F);
 		ft_printf("Error\nMalloc key\n");
 		return (0);
 	}
-	KEY->mvleft = 0;
-	KEY->mvright = 0;
-	KEY->left = 0;
-	KEY->right = 0;
-	KEY->up = 0;
-	KEY->down = 0;
+	F->K->mvleft = 0;
+	F->K->mvright = 0;
+	F->K->left = 0;
+	F->K->right = 0;
+	F->K->up = 0;
+	F->K->down = 0;
 	return (1);
 }
 
-int		ft_init_sprite(t_file *file, int x, int y)
+t_sprite	*ft_init_sprite(t_file *file, int x, int y, float dist)
 {
-	if (!(SPRITE = malloc(sizeof(t_sprite))))
+	t_sprite *sprite;
+
+	if (!(sprite = malloc(sizeof(t_sprite))))
 	{
 		ft_free_fil(F);
 		ft_printf("Error\nMalloc sprite\n");
-		return (0);
+		return (NULL);
 	}
-	SPRITE->y = y;
-	SPRITE->x = x;
-	SPRITE->next = NULL;
-	return (1);
+	sprite->y = y;
+	sprite->x = x;
+	sprite->x = dist;
+	sprite->next = NULL;
+	return (sprite);
 }
 
-int		ft_init_imgw(t_file *file)
+int			ft_init_imgw(t_file *file)
 {
-	if (!(IMGW = malloc(sizeof(t_imgw))))
+	if (!(F->IW = malloc(sizeof(t_imgw))))
 	{
 		ft_free_fil(F);
 		ft_printf("Error\nMalloc image wall\n");
 		return (0);
 	}
-	IMGW->text[0] = NULL;
-	IMGW->text[1] = NULL;
-	IMGW->text[2] = NULL;
-	IMGW->text[3] = NULL;
-	IMGW->text[4] = NULL;
-	IMGW->img[0] = NULL;
-	IMGW->img[1] = NULL;
-	IMGW->img[2] = NULL;
-	IMGW->img[3] = NULL;
-	IMGW->img[4] = NULL;
+	F->IW->text[0] = NULL;
+	F->IW->text[1] = NULL;
+	F->IW->text[2] = NULL;
+	F->IW->text[3] = NULL;
+	F->IW->text[4] = NULL;
+	F->IW->img[0] = NULL;
+	F->IW->img[1] = NULL;
+	F->IW->img[2] = NULL;
+	F->IW->img[3] = NULL;
+	F->IW->img[4] = NULL;
 	return (1);
 }

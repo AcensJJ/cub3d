@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 16:39:10 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 11:18:04 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,11 +22,11 @@ static void	ft_cube(t_file *file)
 	F->axe_x /= 2;
 	F->axe_y /= 2;
 	F->mlx = mlx_init();
-	IMGW->text[0] = ft_readxpm(F, PATH->north, 0);
-	IMGW->text[1] = ft_readxpm(F, PATH->south, 1);
-	IMGW->text[2] = ft_readxpm(F, PATH->east, 2);
-	IMGW->text[3] = ft_readxpm(F, PATH->west, 3);
-	IMGW->text[4] = ft_readxpm(F, PATH->sprite, 4);
+	F->IW->text[0] = ft_readxpm(F, F->PA->north, 0);
+	F->IW->text[1] = ft_readxpm(F, F->PA->south, 1);
+	F->IW->text[2] = ft_readxpm(F, F->PA->east, 2);
+	F->IW->text[3] = ft_readxpm(F, F->PA->west, 3);
+	F->IW->text[4] = ft_readxpm(F, F->PA->sprite, 4);
 	F->win = mlx_new_window(F->mlx, F->axe_y, F->axe_x, "Have FUN");
 	F->img = mlx_new_image(F->mlx, F->axe_y, F->axe_x);
 	F->imgdata = (int *)mlx_get_data_addr(F->img, &bits, &sizeline, &end);
@@ -43,15 +43,15 @@ static int	ft_parse_cube2(t_file *file, char *line, int i)
 		ft_colorchr(&line[i], F, 1, 1);
 	else if (!ft_strncmp(&line[i], "F ", 2))
 		ft_colorchr(&line[i], F, 0, 1);
-	else if (!ft_strncmp(&line[i], "SO ", 3) && !PATH->south)
+	else if (!ft_strncmp(&line[i], "SO ", 3) && !F->PA->south)
 		ft_pathchr(&line[i], F, 0);
-	else if (!ft_strncmp(&line[i], "NO ", 3) && !PATH->north)
+	else if (!ft_strncmp(&line[i], "NO ", 3) && !F->PA->north)
 		ft_pathchr(&line[i], F, 1);
-	else if (!ft_strncmp(&line[i], "WE ", 3) && !PATH->west)
+	else if (!ft_strncmp(&line[i], "WE ", 3) && !F->PA->west)
 		ft_pathchr(&line[i], F, 2);
-	else if (!ft_strncmp(&line[i], "EA ", 3) && !PATH->east)
+	else if (!ft_strncmp(&line[i], "EA ", 3) && !F->PA->east)
 		ft_pathchr(&line[i], F, 3);
-	else if (!ft_strncmp(&line[i], "S ", 2) && !PATH->sprite)
+	else if (!ft_strncmp(&line[i], "S ", 2) && !F->PA->sprite)
 		ft_pathchr(&line[i], F, 4);
 	else if (line[i] != '\0' && line[i] != '1')
 	{
@@ -92,9 +92,9 @@ int			main(int ac, char **av)
 	t_file	*file;
 	int		i;
 
-	if (ac < 2)
+	if (ac < 2 || (ac > 2 && ft_strcmp(&av[2][0], "--save")))
 	{
-		ft_printf("Error\nPas tout les arguments\n");
+		ft_printf("Error\nArguments\n");
 		return (1);
 	}
 	i = ft_strlen(av[1]);
@@ -110,6 +110,7 @@ int			main(int ac, char **av)
 	}
 	if (!(ft_start_verif(F, av)))
 		return (1);
+	ac == 3 ? F->save = 1 : 0;
 	ft_cube(F);
 	return (0);
 }

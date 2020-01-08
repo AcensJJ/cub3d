@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/20 04:39:55 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 16:46:30 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 11:14:38 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,52 +18,52 @@ static void	ft_move3(t_file *file)
 	float olddirx;
 	float oldplanex;
 
-	olddirx = PLAYER->dirx;
-	oldplanex = PLAYER->planx;
-	if (KEY->mvright)
+	olddirx = F->PL->dirx;
+	oldplanex = F->PL->planx;
+	if (F->K->mvright)
 	{
-		PLAYER->dirx = PLAYER->dirx * cos(-0.050) -
-		PLAYER->diry * sin(-0.050);
-		PLAYER->diry = olddirx * sin(-0.050) + PLAYER->diry * cos(-0.050);
-		PLAYER->planx = PLAYER->planx * cos(-0.050) -
-		PLAYER->plany * sin(-0.050);
-		PLAYER->plany = oldplanex * sin(-0.050) + PLAYER->plany * cos(-0.050);
+		F->PL->dirx = F->PL->dirx * cos(-0.050) -
+		F->PL->diry * sin(-0.050);
+		F->PL->diry = olddirx * sin(-0.050) + F->PL->diry * cos(-0.050);
+		F->PL->planx = F->PL->planx * cos(-0.050) -
+		F->PL->plany * sin(-0.050);
+		F->PL->plany = oldplanex * sin(-0.050) + F->PL->plany * cos(-0.050);
 	}
-	olddirx = PLAYER->dirx;
-	oldplanex = PLAYER->planx;
-	if (KEY->mvleft)
+	olddirx = F->PL->dirx;
+	oldplanex = F->PL->planx;
+	if (F->K->mvleft)
 	{
-		PLAYER->dirx = PLAYER->dirx * cos(0.050) -
-		PLAYER->diry * sin(0.050);
-		PLAYER->diry = olddirx * sin(0.050) + PLAYER->diry * cos(0.050);
-		PLAYER->planx = PLAYER->planx * cos(0.050) -
-		PLAYER->plany * sin(0.050);
-		PLAYER->plany = oldplanex * sin(0.050) + PLAYER->plany * cos(0.050);
+		F->PL->dirx = F->PL->dirx * cos(0.050) -
+		F->PL->diry * sin(0.050);
+		F->PL->diry = olddirx * sin(0.050) + F->PL->diry * cos(0.050);
+		F->PL->planx = F->PL->planx * cos(0.050) -
+		F->PL->plany * sin(0.050);
+		F->PL->plany = oldplanex * sin(0.050) + F->PL->plany * cos(0.050);
 	}
 }
 
 static void	ft_move2(t_file *file)
 {
-	if (KEY->right)
+	if (F->K->right)
 	{
-		if ((MAP->map[(int)(PLAYER->x + PLAYER->diry * 0.050)]
-					[(int)(PLAYER->y)] != '1') &&
-				(MAP->map[(int)(PLAYER->x)][(int)(PLAYER->y -
-				PLAYER->dirx * 0.050)] != '1'))
+		if ((F->M->map[(int)(F->PL->x + F->PL->diry * 0.050)]
+					[(int)(F->PL->y)] != '1') &&
+				(F->M->map[(int)(F->PL->x)][(int)(F->PL->y -
+				F->PL->dirx * 0.050)] != '1'))
 		{
-			PLAYER->x += PLAYER->diry * 0.050;
-			PLAYER->y -= PLAYER->dirx * 0.050;
+			F->PL->x += F->PL->diry * 0.050;
+			F->PL->y -= F->PL->dirx * 0.050;
 		}
 	}
-	if (KEY->left)
+	if (F->K->left)
 	{
-		if ((MAP->map[(int)(PLAYER->x - PLAYER->diry * 0.050)]
-					[(int)(PLAYER->y)] != '1') &&
-				(MAP->map[(int)(PLAYER->x)][(int)(PLAYER->y +
-				PLAYER->dirx * 0.050)] != '1'))
+		if ((F->M->map[(int)(F->PL->x - F->PL->diry * 0.050)]
+					[(int)(F->PL->y)] != '1') &&
+				(F->M->map[(int)(F->PL->x)][(int)(F->PL->y +
+				F->PL->dirx * 0.050)] != '1'))
 		{
-			PLAYER->x -= PLAYER->diry * 0.050;
-			PLAYER->y += PLAYER->dirx * 0.050;
+			F->PL->x -= F->PL->diry * 0.050;
+			F->PL->y += F->PL->dirx * 0.050;
 		}
 	}
 	ft_move3(F);
@@ -71,26 +71,26 @@ static void	ft_move2(t_file *file)
 
 void		ft_move(t_file *file)
 {
-	if (KEY->up)
+	if (F->K->up)
 	{
-		if ((MAP->map[(int)(PLAYER->x + PLAYER->dirx * 0.050)]
-					[(int)(PLAYER->y)] != '1')
-				&& (MAP->map[(int)(PLAYER->x)][(int)(PLAYER->y +
-						PLAYER->diry * 0.050)] != '1'))
+		if ((F->M->map[(int)(F->PL->x + F->PL->dirx * 0.050)]
+					[(int)(F->PL->y)] != '1')
+				&& (F->M->map[(int)(F->PL->x)][(int)(F->PL->y +
+						F->PL->diry * 0.050)] != '1'))
 		{
-			PLAYER->x += PLAYER->dirx * 0.050;
-			PLAYER->y += PLAYER->diry * 0.050;
+			F->PL->x += F->PL->dirx * 0.050;
+			F->PL->y += F->PL->diry * 0.050;
 		}
 	}
-	if (KEY->down)
+	if (F->K->down)
 	{
-		if ((MAP->map[(int)(PLAYER->x - PLAYER->dirx * 0.050)]
-					[(int)(PLAYER->y)] != '1') &&
-				(MAP->map[(int)(PLAYER->x)][(int)(PLAYER->y -
-				PLAYER->diry * 0.050)] != '1'))
+		if ((F->M->map[(int)(F->PL->x - F->PL->dirx * 0.050)]
+					[(int)(F->PL->y)] != '1') &&
+				(F->M->map[(int)(F->PL->x)][(int)(F->PL->y -
+				F->PL->diry * 0.050)] != '1'))
 		{
-			PLAYER->x -= PLAYER->dirx * 0.050;
-			PLAYER->y -= PLAYER->diry * 0.050;
+			F->PL->x -= F->PL->dirx * 0.050;
+			F->PL->y -= F->PL->diry * 0.050;
 		}
 	}
 	ft_move2(F);

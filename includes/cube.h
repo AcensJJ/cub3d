@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 16:36:01 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 11:28:46 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,15 +23,15 @@
 # include "../ft_printf/libft/include/get_next_line.h"
 
 # define F file
-# define FC file->color
-# define PATH file->path
-# define MAP file->map
-# define PLAYER file->player
-# define RAY file->ray
-# define DRAW file->draw
-# define KEY file->key
-# define SPRITE file->sprite
-# define IMGW file->imgw
+# define FC color
+# define PA path
+# define M map
+# define PL player
+# define R ray
+# define D draw
+# define K key
+# define SP sprite
+# define IW imgw
 
 typedef struct		s_imgw
 {
@@ -45,6 +45,7 @@ typedef struct		s_sprite
 {
 	int				y;
 	int				x;
+	float			dist;
 	struct s_sprite	*next;
 
 }					t_sprite;
@@ -71,10 +72,10 @@ typedef struct		s_key
 
 typedef struct		s_ray
 {
-	float 			sidex;
-	float 			sidey;
-	float 			deltdistx;
-	float 			deltdisty;
+	float			sidex;
+	float			sidey;
+	float			deltdistx;
+	float			deltdisty;
 	float			raydirx;
 	float			raydiry;
 	int				mapx;
@@ -133,6 +134,7 @@ typedef struct		s_file
 	int				*imgdata;
 	int				axe_x;
 	int				axe_y;
+	int				save;
 	struct s_path	*path;
 	struct s_color	*color;
 	struct s_map	*map;
@@ -146,17 +148,20 @@ typedef struct		s_file
 
 int					main(int ac, char **av);
 
+void				ft_free_sprite(t_file *file);
 void				ft_free_fil(t_file *file);
 
-int   				ft_init_color(t_file *file);
-int    				ft_init_map(t_file *file);
-int    				ft_init_player(t_file *file);
-int    				ft_init_path(t_file *file);
+void				ft_sprit_verif_lst(t_file *file);
+
+int					ft_init_color(t_file *file);
+int					ft_init_map(t_file *file);
+int					ft_init_player(t_file *file);
+int					ft_init_path(t_file *file);
 int					ft_init_ray(t_file *file);
 int					ft_init_draw(t_file *file);
 int					ft_init_key(t_file *file);
-int					ft_init_sprite(t_file *file, int x, int y);
 int					ft_init_imgw(t_file *file);
+t_sprite			*ft_init_sprite(t_file *file, int x, int y, float dist);
 
 int					ft_verif_color_path(t_file *file);
 int					ft_verif_map(t_file *file);
@@ -173,15 +178,13 @@ int					ft_appui(int i, t_file *file);
 int					ft_relache(int i, t_file *file);
 
 int					*ft_readxpm(t_file *file, char *str, int n);
-void				draw_suite(t_file *file, int x, int texnum);
-void				draw(t_file *file, int x);
-void				hit_wall(t_file *file);
+void				ft_hit_wall(t_file *file);
+void				ft_draw(t_file *file, int x);
 
-void				ray_cast_suite(t_file *file);
 void				raycast(t_file *file);
 int					ft_snakeoil(t_file *file);
 
-void 				ft_resochr(char *line, t_file *file);
+void				ft_resochr(char *line, t_file *file);
 void				ft_colorchr(char *line, t_file *file, int p, int i);
 void				ft_pathchr(char *line, t_file *file, int p);
 

@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_config_map.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: nepage-l <nepage-l@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 16:40:56 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/21 12:01:26 by nepage-l    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 11:13:52 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,10 +19,10 @@ static int	ft_join_char_more(t_file *file, char *join, int nb)
 
 	join[++nb] = '\n';
 	join[++nb] = '\0';
-	tmp = ft_strjoin(MAP->mapchar, join);
-	free(MAP->mapchar);
+	tmp = ft_strjoin(F->M->mapchar, join);
+	free(F->M->mapchar);
 	free(join);
-	MAP->mapchar = tmp;
+	F->M->mapchar = tmp;
 	return (1);
 }
 
@@ -53,7 +53,7 @@ int			ft_join_charmap(t_file *file, char *line, int i, int nb)
 
 int			ft_set_line(t_file *file, char *line, int nb, int i)
 {
-	MAP->height += 1;
+	F->M->height += 1;
 	while (line[i] != '\0')
 	{
 		while (line[i] == ' ')
@@ -72,16 +72,16 @@ int			ft_set_line(t_file *file, char *line, int nb, int i)
 	}
 	if (nb == 0)
 		return (1);
-	else if (nb == MAP->width)
+	else if (nb == F->M->width)
 		return (2);
-	printf("nb = %i, witdh = %i\n", i, MAP->width);
+	printf("nb = %i, witdh = %i\n", i, F->M->width);
 	ft_printf("Error\nMap MAIS TU FAIS QUOI?\n");
 	return (0);
 }
 
 int			ft_first_line_map(char *line, int i, int nb, t_file *file)
 {
-	MAP->height += 1;
+	F->M->height += 1;
 	while (line[i] != '\0')
 	{
 		while (line[i] == ' ')
@@ -106,14 +106,14 @@ int			ft_config_map(int fd, char *line, t_file *file)
 {
 	int i;
 
-	if (!((MAP->width = ft_first_line_map(line, 0, 0, file)) &&
-		(MAP->mapchar = ft_calloc(MAP->width + 2, 1))))
+	if (!((F->M->width = ft_first_line_map(line, 0, 0, file)) &&
+		(F->M->mapchar = ft_calloc(F->M->width + 2, 1))))
 	{
 		ft_printf("Error\nMalloc\n");
 		return (0);
 	}
-	ft_memset(MAP->mapchar, '1', MAP->width + 1);
-	MAP->mapchar[MAP->width] = '\n';
+	ft_memset(F->M->mapchar, '1', F->M->width + 1);
+	F->M->mapchar[F->M->width] = '\n';
 	while (get_next_line(fd, &line) >= 0)
 	{
 		if (!(i = ft_set_line(F, line, 0, 0)))

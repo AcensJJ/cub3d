@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/20 05:44:25 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 16:38:20 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 11:14:38 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,33 +26,33 @@ int			ft_appui(int i, t_file *file)
 	if (i == 53)
 		ft_quit(F);
 	if (i == 123)
-		KEY->mvleft = 1;
+		F->K->mvleft = 1;
 	if (i == 124)
-		KEY->mvright = 1;
+		F->K->mvright = 1;
 	if (i == 13)
-		KEY->up = 1;
+		F->K->up = 1;
 	if (i == 1)
-		KEY->down = 1;
+		F->K->down = 1;
 	if (i == 0)
-		KEY->left = 1;
+		F->K->left = 1;
 	if (i == 2)
-		KEY->right = 1;
+		F->K->right = 1;
 	return (1);
 }
 
 int			ft_relache(int i, t_file *file)
 {
 	if (i == 123)
-		KEY->mvleft = 0;
+		F->K->mvleft = 0;
 	if (i == 124)
-		KEY->mvright = 0;
+		F->K->mvright = 0;
 	if (i == 13)
-		KEY->up = 0;
+		F->K->up = 0;
 	if (i == 1)
-		KEY->down = 0;
+		F->K->down = 0;
 	if (i == 0)
-		KEY->left = 0;
+		F->K->left = 0;
 	if (i == 2)
-		KEY->right = 0;
+		F->K->right = 0;
 	return (1);
 }

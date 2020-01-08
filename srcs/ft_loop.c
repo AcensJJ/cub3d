@@ -6,66 +6,67 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/07 16:45:59 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 11:18:29 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-void		ray_cast_suite(t_file *file)
+static void		ft_ray_cast_suite(t_file *file)
 {
-	if (RAY->raydirx < 0)
+	if (F->R->raydirx < 0)
 	{
-		RAY->stepx = -1;
-		RAY->sidex = (PLAYER->x - RAY->mapx) * RAY->deltdistx;
+		F->R->stepx = -1;
+		F->R->sidex = (F->PL->x - F->R->mapx) * F->R->deltdistx;
 	}
 	else
 	{
-		RAY->stepx = 1;
-		RAY->sidex = (RAY->mapx + 1.0 - PLAYER->x) * RAY->deltdistx;
+		F->R->stepx = 1;
+		F->R->sidex = (F->R->mapx + 1.0 - F->PL->x) * F->R->deltdistx;
 	}
-	if (RAY->raydiry < 0)
+	if (F->R->raydiry < 0)
 	{
-		RAY->stepy = -1;
-		RAY->sidey = (PLAYER->y - RAY->mapy) * RAY->deltdisty;
+		F->R->stepy = -1;
+		F->R->sidey = (F->PL->y - F->R->mapy) * F->R->deltdisty;
 	}
 	else
 	{
-		RAY->stepy = 1;
-		RAY->sidey = (RAY->mapy + 1.0 - PLAYER->y) * RAY->deltdisty;
+		F->R->stepy = 1;
+		F->R->sidey = (F->R->mapy + 1.0 - F->PL->y) * F->R->deltdisty;
 	}
 }
 
-void		raycast(t_file *file)
+void			raycast(t_file *file)
 {
 	int		i;
+	// double	buffer[F->axe_y];
 
 	i = 0;
-	RAY->mapx = (int)PLAYER->x;
-	RAY->mapy = (int)PLAYER->y;
+	F->R->mapx = (int)F->PL->x;
+	F->R->mapy = (int)F->PL->y;
 	mlx_clear_window(F->mlx, F->win);
 	while (i < F->axe_y)
 	{
-		RAY->hit = 0;
-		PLAYER->camx = 2 * i / (double)F->axe_y - 1;
-		RAY->raydirx = PLAYER->dirx + PLAYER->planx * PLAYER->camx;
-		RAY->raydiry = PLAYER->diry + PLAYER->plany * PLAYER->camx;
-		RAY->mapx = (int)PLAYER->x;
-		RAY->mapy = (int)PLAYER->y;
-		RAY->deltdistx = fabs(1 / RAY->raydirx);
-		RAY->deltdisty = fabs(1 / RAY->raydiry);
-		ray_cast_suite(file);
-		hit_wall(file);
-		draw(file, i);
+		F->R->hit = 0;
+		F->PL->camx = 2 * i / (double)F->axe_y - 1;
+		F->R->raydirx = F->PL->dirx + F->PL->planx * F->PL->camx;
+		F->R->raydiry = F->PL->diry + F->PL->plany * F->PL->camx;
+		F->R->mapx = (int)F->PL->x;
+		F->R->mapy = (int)F->PL->y;
+		F->R->deltdistx = fabs(1 / F->R->raydirx);
+		F->R->deltdisty = fabs(1 / F->R->raydiry);
+		ft_ray_cast_suite(file);
+		ft_hit_wall(file);
+		ft_draw(file, i);
 		i++;
 	}
-//	draw_sprite(mlx, buffer);
-//	if (mlx->save == 0)
-	mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0);
+	// draw_sprite(F, buffer);
+	if (F->save == 0)
+		mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0);
 }
 
-int			ft_snakeoil(t_file *file)
+int				ft_snakeoil(t_file *file)
 {
 	raycast(F);
 	ft_move(F);

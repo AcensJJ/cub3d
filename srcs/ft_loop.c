@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 11:37:58 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 13:32:41 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,7 +40,7 @@ static void		ft_ray_cast_suite(t_file *file)
 void			raycast(t_file *file)
 {
 	int		i;
-	// double	buffer[F->axe_y];
+	double	buffer[F->axe_y];
 
 	i = 0;
 	F->R->mapx = (int)F->PL->x;
@@ -61,9 +61,8 @@ void			raycast(t_file *file)
 		ft_draw(file, i);
 		i++;
 	}
-	// draw_sprite(F, buffer);
-	if (F->save == 0)
-		mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0);
+	ft_draw_sprite(F, buffer);
+	F->save == 0 ? mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0) : 0;
 }
 
 int				ft_snakeoil(t_file *file)

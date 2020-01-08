@@ -6,26 +6,12 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 11:21:49 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 13:32:26 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
-
-int				*ft_readxpm(t_file *file, char *str, int n)
-{
-	int		*data;
-	int		bits;
-	int		sl;
-	int		endian;
-
-	data = NULL;
-	if ((F->IW->img[n] = mlx_xpm_file_to_image(F->mlx, str, &F->IW->width[n],
-		&F->IW->height[n])))
-		data = (int *)mlx_get_data_addr(F->IW->img[n], &bits, &sl, &endian);
-	return (data);
-}
 
 static void		ft_draw_suite(t_file *file, int x, int texnum)
 {
@@ -74,7 +60,6 @@ void			ft_draw(t_file *file, int x)
 		(F->R->side == 1 && F->R->raydiry < 0))
 		F->D->texx = F->IW->width[texnum] - F->D->texx - 1;
 	F->D->lineheight = (int)(F->axe_x / F->R->perpwalldist);
-	F->D->lineheight > 19 * F->axe_x ? F->D->lineheight = 19 * F->axe_x : 0;
 	F->D->start = -F->D->lineheight / 2 + F->axe_x / 2;
 	F->D->end = F->D->lineheight / 2 + F->axe_x / 2;
 	(F->D->start < 0) ? F->D->start = 0 : 0;

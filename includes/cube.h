@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 11:28:46 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 11:42:22 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -176,6 +176,8 @@ int					ft_rgbtoint(int red, int green, int blue);
 void				ft_move(t_file *file);
 int					ft_appui(int i, t_file *file);
 int					ft_relache(int i, t_file *file);
+
+void				ft_draw_sprite(t_file *file, double *buffer);
 
 int					*ft_readxpm(t_file *file, char *str, int n);
 void				ft_hit_wall(t_file *file);

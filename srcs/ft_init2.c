@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 20:04:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 11:26:19 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 13:31:02 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,7 +56,7 @@ t_sprite	*ft_init_sprite(t_file *file, int x, int y, float dist)
 	}
 	sprite->y = y;
 	sprite->x = x;
-	sprite->x = dist;
+	sprite->dist = dist;
 	sprite->next = NULL;
 	return (sprite);
 }

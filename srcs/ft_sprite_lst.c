@@ -6,14 +6,14 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 10:38:27 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 11:32:02 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 16:13:16 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-static t_sprite		*ft_sprit_add_lstlast(t_file *file)
+static t_sprite		*ft_sprit_add_lstorder(t_file *file, t_sprite *sprite)
 {
 	t_sprite	*beg_lst;
 
@@ -21,39 +21,82 @@ static t_sprite		*ft_sprit_add_lstlast(t_file *file)
 		return (NULL);
 	beg_lst = F->SP;
 	while (beg_lst->next != NULL)
+	{
+		if ((beg_lst->dist - sprite->dist) < 0)
+			return (beg_lst);
 		beg_lst = beg_lst->next;
+	}
 	return (beg_lst);
+}
+
+static void			ft_sprit_config_add_lst(t_file *file, t_sprite *sprite)
+{
+	t_sprite *beg_lst;
+
+	beg_lst = ft_sprit_add_lstorder(F, sprite);
+	if (F->SP == beg_lst)
+	{
+		if ((beg_lst->dist - sprite->dist) < 0)
+		{
+			sprite->next = beg_lst;
+			F->SP = sprite;
+		}
+		else
+			beg_lst->next = sprite;
+	}
+	else
+	{
+		if ((beg_lst->dist - sprite->dist) > 0)
+			beg_lst->next = sprite;
+		else
+		{
+			sprite->next = beg_lst;
+			beg_lst = sprite;
+		}
+	}
 }
 
 static int			ft_sprit_add_lst(t_file *file, t_sprite *sprite)
 {
-	t_sprite *beg_lst;
-
 	if (F == NULL || sprite == NULL)
 		return (-1);
 	if (F->SP == NULL)
 		F->SP = sprite;
 	else
-	{
-		beg_lst = ft_sprit_add_lstlast(F);
-		beg_lst->next = sprite;
-	}
+		ft_sprit_config_add_lst(F, sprite);
 	return (0);
+}
+
+static int			ft_sprit_check(t_file *file)
+{
+	t_sprite	*beg_lst;
+
+	beg_lst = F->SP;
+	while (beg_lst != NULL)
+	{
+		if (beg_lst->x == F->R->mapx && beg_lst->y == F->R->mapy)
+			return (0);
+		beg_lst = beg_lst->next;
+	}
+	return (1);
 }
 
 void				ft_sprit_verif_lst(t_file *file)
 {
-	float dist;
+	float d;
 
-	if (F->R->side == 0)
-		dist =
-			(F->R->mapx - F->PL->x + (1 - F->R->stepx) / 2) / F->R->raydirx;
-	else
-		dist =
-			(F->R->mapy - F->PL->y + (1 - F->R->stepy) / 2) / F->R->raydiry;
-	if (ft_sprit_add_lst(F, ft_init_sprite(F, F->R->mapx, F->R->mapy, dist)))
+	if (ft_sprit_check(F))
 	{
-		ft_printf("Error\nCreate sprite\n");
-		ft_quit(F);
+		if (F->R->side == 0)
+			d =
+				(F->R->mapx - F->PL->x + (1 - F->R->stepx) / 2) / F->R->raydirx;
+		else
+			d =
+				(F->R->mapy - F->PL->y + (1 - F->R->stepy) / 2) / F->R->raydiry;
+		if (ft_sprit_add_lst(F, ft_init_sprite(F, F->R->mapx, F->R->mapy, d)))
+		{
+			ft_printf("Error\nCreate sprite\n");
+			ft_quit(F);
+		}
 	}
 }

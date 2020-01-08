@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:50:59 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 11:31:05 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/08 11:37:37 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,7 +72,7 @@ void		ft_free_fil(t_file *file)
 {
 	F->PA ? ft_free_path(F) : 0;
 	F->R ? free(F->R) : 0;
-	F->PL? free(F->PL) : 0;
+	F->PL ? free(F->PL) : 0;
 	F->D ? free(F->D) : 0;
 	F->K ? free(F->K) : 0;
 	F->FC ? free(F->FC) : 0;

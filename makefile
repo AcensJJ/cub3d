@@ -11,7 +11,7 @@ SRCS_NAME	= 					cube.c ft_loop.c ft_set_color.c ft_move.c\
 								ft_init.c ft_init2.c ft_config_struct.c\
 								ft_free.c ft_config_map.c ft_sprite_lst.c\
 								ft_verif.c ft_keys.c ft_verif2.c ft_wall.c\
-								ft_draw_sprite.c
+								ft_sprite_draw.c
 OBJS		= 					${SRCS:.c=.o}
 LIBRARIES 	= 					$(LIBS) $(MINILIBXS)
 NAME		= 					Cub3D

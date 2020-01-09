@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 19:46:20 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 20:23:05 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,13 +39,13 @@ static void		ft_ray_cast_suite(t_file *file)
 
 void			raycast(t_file *file)
 {
-	int		i;
+	int	i;
 
-	i = 0;
+	i = -1;
 	F->R->mapx = (int)F->PL->x;
 	F->R->mapy = (int)F->PL->y;
 	mlx_clear_window(F->mlx, F->win);
-	while (i < F->axe_y)
+	while (++i < F->axe_y)
 	{
 		F->R->hit = 0;
 		F->PL->camx = 2 * i / (double)F->axe_y - 1;
@@ -59,7 +59,6 @@ void			raycast(t_file *file)
 		ft_hit_wall(file);
 		ft_draw(file, i);
 		ft_draw_sprite(F, i);
-		i++;
 	}
 	F->save == 0 ? mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0) : 0;
 }

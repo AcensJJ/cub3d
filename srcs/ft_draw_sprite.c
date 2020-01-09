@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 11:39:02 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 19:41:36 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 20:18:27 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ static void	ft_draw_sprite_it(t_file *file, int i)
 	{
 		F->DP->texx = (int)(256 * (i - (-F->DP->width / 2 +
 		F->DP->screen)) * F->IW->width[4] / F->DP->width) / 256;
-		if (F->DP->y > 0 && i > 0 && i < F->axe_y && F->DP->y)
+		if (F->DP->y > 0 && i >= 0 && i < F->axe_y && F->DP->y)
 			while (F->DP->drawstarty < F->DP->drawendy)
 			{
 				F->DP->d = (F->DP->drawstarty - F->DP->vmovescreen) * 256 -

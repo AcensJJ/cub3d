@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 15:31:19 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 19:16:56 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,6 +39,7 @@ typedef struct		s_sprite
 	float			y;
 	float			x;
 	float			dist;
+	int				perpwalldist;
 	struct s_sprite	*next;
 
 }					t_sprite;
@@ -56,10 +57,20 @@ typedef struct		s_draspr
 	double			inverse;
 	double			x;
 	double			y;
+	int				d;
 	int				screen;
 	int				start;
 	int				end;
 	int				height;
+	int				width;
+	int				drawstartx;
+	int				drawstarty;
+	int				drawendx;
+	int				drawendy;
+	int				texx;
+	int				texy;
+	int				vmovescreen;
+	int				color;
 }					t_draspr;
 
 typedef struct		s_draw

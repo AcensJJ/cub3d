@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 20:04:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 13:31:02 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 15:33:34 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,17 +48,28 @@ t_sprite	*ft_init_sprite(t_file *file, int x, int y, float dist)
 {
 	t_sprite *sprite;
 
-	if (!(sprite = malloc(sizeof(t_sprite))))
+	if (!(SP = malloc(sizeof(t_sprite))))
 	{
 		ft_free_fil(F);
 		ft_printf("Error\nMalloc sprite\n");
 		return (NULL);
 	}
-	sprite->y = y;
-	sprite->x = x;
-	sprite->dist = dist;
-	sprite->next = NULL;
-	return (sprite);
+	SP->y = y + 0.5;
+	SP->x = x + 0.5;
+	SP->dist = dist;
+	SP->next = NULL;
+	return (SP);
+}
+
+int			ft_init_draw_sprite(t_file *file)
+{
+	if (!(F->DP = malloc(sizeof(t_draspr))))
+	{
+		ft_free_fil(F);
+		ft_printf("Error\nMalloc draw sprite\n");
+		return (0);
+	}
+	return (1);
 }
 
 int			ft_init_imgw(t_file *file)

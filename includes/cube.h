@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 20:15:19 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 15:31:19 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,6 +32,16 @@
 # define K key
 # define SP sprite
 # define IW imgw
+# define DP drawsprite
+
+typedef struct		s_sprite
+{
+	float			y;
+	float			x;
+	float			dist;
+	struct s_sprite	*next;
+
+}					t_sprite;
 
 typedef struct		s_imgw
 {
@@ -41,14 +51,16 @@ typedef struct		s_imgw
 	int				height[5];
 }					t_imgw;
 
-typedef struct		s_sprite
+typedef struct		s_draspr
 {
-	int				y;
-	int				x;
-	float			dist;
-	struct s_sprite	*next;
-
-}					t_sprite;
+	double			inverse;
+	double			x;
+	double			y;
+	int				screen;
+	int				start;
+	int				end;
+	int				height;
+}					t_draspr;
 
 typedef struct		s_draw
 {
@@ -143,6 +155,7 @@ typedef struct		s_file
 	struct s_draw	*draw;
 	struct s_key	*key;
 	struct s_sprite	*sprite;
+	struct s_draspr	*drawsprite;
 	struct s_imgw	*imgw;
 }					t_file;
 
@@ -161,6 +174,7 @@ int					ft_init_ray(t_file *file);
 int					ft_init_draw(t_file *file);
 int					ft_init_key(t_file *file);
 int					ft_init_imgw(t_file *file);
+int					ft_init_draw_sprite(t_file *file);
 t_sprite			*ft_init_sprite(t_file *file, int x, int y, float dist);
 
 int					ft_verif_color_path(t_file *file);

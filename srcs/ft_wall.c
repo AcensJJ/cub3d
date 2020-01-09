@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 20:54:25 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 17:11:20 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,8 +17,8 @@ static void		ft_draw_suite(t_file *file, int x, int texnum)
 {
 	int y;
 
-	y = 0;
-	while (y < F->axe_x)
+	y = -1;
+	while (++y < F->axe_x)
 	{
 		if (y < F->D->start)
 			F->imgdata[y * F->axe_y + x] =
@@ -29,15 +29,16 @@ static void		ft_draw_suite(t_file *file, int x, int texnum)
 			F->D->texy = ((F->D->d * F->IW->height[texnum])
 			/ F->D->lineheight) / 256;
 			F->D->texy < 0 ? F->D->texy = 0 : 0;
-			if (F->IW->height[texnum] * F->IW->width[texnum]
-				> (F->D->texy * F->IW->width[texnum] + F->D->texx))
-				F->imgdata[y * F->axe_y + x] = F->IW->text[texnum][(F->D->texy
-				* F->IW->width[texnum] + F->D->texx)];
+			F->imgdata[y * F->axe_y + x] = F->IW->text[texnum][(F->D->texy
+			* F->IW->width[texnum] + F->D->texx)];
+			if (y > 0 && !(F->IW->height[texnum] * F->IW->width[texnum]
+				> (F->D->texy * F->IW->width[texnum] + F->D->texx)))
+				F->imgdata[y * F->axe_y + x] = F->imgdata[(y - 1)
+				* F->axe_y + x];
 		}
 		if (y > F->D->end)
 			F->imgdata[y * F->axe_y + x] =
 			ft_rgbtoint(F->FC->c1, F->FC->c2, F->FC->c3);
-		y++;
 	}
 }
 
@@ -69,6 +70,7 @@ void			ft_draw(t_file *file, int x)
 
 void			ft_hit_wall(t_file *file)
 {
+	F->M->map[F->R->mapx][F->R->mapy] == '2' ? ft_sprit_verif_lst(F) : 0;
 	while (F->R->hit == 0)
 	{
 		if (F->R->sidex < F->R->sidey)
@@ -88,10 +90,7 @@ void			ft_hit_wall(t_file *file)
 		else if (F->M->map[F->R->mapx][F->R->mapy] == '2')
 			ft_sprit_verif_lst(F);
 	}
-	if (F->R->side == 0)
-		F->R->perpwalldist =
-			(F->R->mapx - F->PL->x + (1 - F->R->stepx) / 2) / F->R->raydirx;
-	else
-		F->R->perpwalldist =
-			(F->R->mapy - F->PL->y + (1 - F->R->stepy) / 2) / F->R->raydiry;
+	F->R->perpwalldist = (F->R->side == 0) ? (F->R->mapx - F->PL->x +
+	(1 - F->R->stepx) / 2) / F->R->raydirx : (F->R->mapy - F->PL->y +
+	(1 - F->R->stepy) / 2) / F->R->raydiry;
 }

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:50:59 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 11:37:37 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 15:07:10 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -80,5 +80,6 @@ void		ft_free_fil(t_file *file)
 	F->SP ? ft_free_sprite(F) : 0;
 	F->IW ? ft_destroy(F) : 0;
 	F->IW ? free(F->IW) : 0;
+	F->DP ? free(F->DP) : 0;
 	free(F);
 }

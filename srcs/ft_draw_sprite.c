@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 11:39:02 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 19:38:59 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 19:41:36 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,7 +35,7 @@ static void	ft_draw_sprite_it(t_file *file, int i)
 				F->DP->height) / 256;
 				F->DP->color = F->IW->text[4][F->IW->width[4] *
 				F->DP->texy + F->DP->texx];
-				(F->DP->color >= 0) ? F->imgdata[F->DP->drawstarty *
+				(F->DP->color > 0) ? F->imgdata[F->DP->drawstarty *
 				F->axe_y + i] = F->DP->color : 0;
 				F->DP->drawstarty++;
 			}

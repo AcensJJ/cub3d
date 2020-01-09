@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 11:39:02 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 19:24:56 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 19:37:17 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -58,7 +58,9 @@ static void	ft_draw_sprite_calc(t_file *file, int i, t_sprite *sprite)
 	F->DP->y = F->DP->inverse * (-F->PL->plany * spritex + F->PL->planx
 	* spritey);
 	F->DP->screen = (int)((F->axe_y / 2) * (1 + F->DP->x / F->DP->y));
-	F->DP->height = abs((int)(F->axe_x / F->DP->y));
+	// modif ici
+	F->DP->height = abs((int)(F->axe_x / F->DP->y)) / F->DP->inverse;
+	//
 	F->DP->start = -F->DP->height / 2 + F->axe_x / 2 + F->DP->screen;
 	F->DP->end = F->DP->height / 2 + F->axe_x / 2 + F->DP->screen;
 	F->DP->start < 0 ? F->DP->start = 0 : 0;

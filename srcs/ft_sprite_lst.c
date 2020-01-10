@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 10:38:27 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 09:27:13 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 18:53:21 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -85,14 +85,18 @@ void				ft_sprit_verif_lst(t_file *file)
 {
 	float d;
 
-	if (ft_sprit_check(F))
-	{
-		d = ((F->PL->x - 0.5 - F->R->mapx) * (F->PL->x - 0.5 - F->R->mapx)
-		+ (F->PL->y - 0.5 - F->R->mapy) * (F->PL->y - 0.5 - F->R->mapy));
-		if (ft_sprit_add_lst(F, ft_init_sprite(F, F->R->mapx, F->R->mapy, d)))
+	if (F->M->map[F->R->mapx][F->R->mapy] == '2' ||
+		F->M->map[F->R->mapx][F->R->mapy] == '4' ||
+		F->M->map[F->R->mapx][F->R->mapy] == '5')
+		if (ft_sprit_check(F))
 		{
-			ft_printf("Error\nCreate sprite\n");
-			ft_quit(F);
+			d = ((F->PL->x - 0.5 - F->R->mapx) * (F->PL->x - 0.5 - F->R->mapx)
+			+ (F->PL->y - 0.5 - F->R->mapy) * (F->PL->y - 0.5 - F->R->mapy));
+			if (ft_sprit_add_lst(F,
+			ft_init_sprite(F, F->R->mapx, F->R->mapy, d)))
+			{
+				ft_printf("Error\nCreate sprite\n");
+				ft_quit(F);
+			}
 		}
-	}
 }

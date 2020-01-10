@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 11:49:38 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 19:31:54 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,9 +68,16 @@ void			ft_draw(t_file *file, int x)
 	ft_draw_suite(F, x, texnum);
 }
 
-void			ft_hit_wall(t_file *file)
+void			ft_hit_wall_verif_first_sprite(t_file *file)
 {
 	F->M->map[F->R->mapx][F->R->mapy] == '2' ? ft_sprit_verif_lst(F) : 0;
+	F->M->map[F->R->mapx][F->R->mapy] == '4' ? ft_sprit_verif_lst(F) : 0;
+	F->M->map[F->R->mapx][F->R->mapy] == '5' ? ft_sprit_verif_lst(F) : 0;
+}
+
+void			ft_hit_wall(t_file *file)
+{
+	ft_hit_wall_verif_first_sprite(F);
 	while (F->R->hit == 0)
 	{
 		if (F->R->sidex < F->R->sidey)
@@ -87,10 +94,10 @@ void			ft_hit_wall(t_file *file)
 		}
 		if (F->M->map[F->R->mapx][F->R->mapy] == '1')
 			F->R->hit = 1;
-		else if (F->M->map[F->R->mapx][F->R->mapy] == '2')
-			ft_sprit_verif_lst(F);
 		else if (F->M->map[F->R->mapx][F->R->mapy] == '3')
 			F->R->hit = 1;
+		else if (F->M->map[F->R->mapx][F->R->mapy] != '0')
+			ft_sprit_verif_lst(F);
 	}
 	F->R->perpwalldist = (F->R->side == 0) ? (F->R->mapx - F->PL->x +
 	(1 - F->R->stepx) / 2) / F->R->raydirx : (F->R->mapy - F->PL->y +

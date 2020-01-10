@@ -5,8 +5,8 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 16:52:35 by jacens      ###    #+. /#+    ###.fr     */
+/*   Created: 2089/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/10 18:34:22 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -79,16 +79,17 @@ typedef struct		s_sprite
 	float			x;
 	float			dist;
 	int				perpwalldist;
+	int				nb;
 	struct s_sprite	*next;
 
 }					t_sprite;
 
 typedef struct		s_imgw
 {
-	int				*text[6];
-	void			*img[6];
-	int				width[6];
-	int				height[6];
+	int				*text[7];
+	void			*img[7];
+	int				width[7];
+	int				height[7];
 }					t_imgw;
 
 typedef struct		s_draspr
@@ -159,6 +160,8 @@ typedef struct		s_player
 	float			dirx;
 	float			diry;
 	float			camx;
+	int				pv;
+	int				etat;
 }					t_player;
 
 typedef struct		s_map

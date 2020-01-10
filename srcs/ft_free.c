@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:50:59 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 16:51:07 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 18:25:13 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,6 +67,7 @@ static void	ft_destroy(t_file *file)
 	F->IW->img[3] ? mlx_destroy_image(F->mlx, F->IW->img[3]) : 0;
 	F->IW->img[4] ? mlx_destroy_image(F->mlx, F->IW->img[4]) : 0;
 	F->IW->img[5] ? mlx_destroy_image(F->mlx, F->IW->img[5]) : 0;
+	F->IW->img[6] ? mlx_destroy_image(F->mlx, F->IW->img[6]) : 0;
 }
 
 void		ft_free_fil(t_file *file)

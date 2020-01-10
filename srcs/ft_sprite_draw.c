@@ -6,14 +6,14 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 11:39:02 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 09:27:13 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 18:40:21 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-static void	ft_draw_sprite_it(t_file *file, int i)
+static void	ft_draw_sprite_it(t_file *file, int i, t_sprite *sprite)
 {
 	F->DP->color = 0;
 	F->DP->vmovescreen = (int)(0.0 / F->DP->y);
@@ -25,15 +25,15 @@ static void	ft_draw_sprite_it(t_file *file, int i)
 	if (i >= F->DP->drawstartx && i < F->DP->drawendx)
 	{
 		F->DP->texx = (int)(256 * (i - (-F->DP->width / 2 +
-		F->DP->screen)) * F->IW->width[4] / F->DP->width) / 256;
+		F->DP->screen)) * F->IW->width[SP->nb] / F->DP->width) / 256;
 		if (F->DP->y > 0 && i >= 0 && i < F->axe_y && F->DP->y)
 			while (F->DP->drawstarty < F->DP->drawendy)
 			{
 				F->DP->d = (F->DP->drawstarty - F->DP->vmovescreen) * 256 -
 				F->axe_x * 128 + F->DP->height * 128;
-				F->DP->texy = ((F->DP->d * F->IW->height[4]) /
+				F->DP->texy = ((F->DP->d * F->IW->height[SP->nb]) /
 				F->DP->height) / 256;
-				F->DP->color = F->IW->text[4][F->IW->width[4] *
+				F->DP->color = F->IW->text[SP->nb][F->IW->width[SP->nb] *
 				F->DP->texy + F->DP->texx];
 				(F->DP->color > 0) ? F->imgdata[F->DP->drawstarty *
 				F->axe_y + i] = F->DP->color : 0;
@@ -67,7 +67,7 @@ static void	ft_draw_sprite_calc(t_file *file, int i, t_sprite *sprite)
 	(F->DP->drawstarty < 0) ? F->DP->drawstarty = 0 : 0;
 	F->DP->drawendy = F->DP->height / 2 + F->axe_x / 2 + 0.0;
 	(F->DP->drawendy >= F->axe_x) ? F->DP->drawendy = F->axe_x - 1 : 0;
-	ft_draw_sprite_it(F, i);
+	ft_draw_sprite_it(F, i, sprite);
 }
 
 void		ft_draw_sprite(t_file *file, int i)

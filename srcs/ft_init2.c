@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 20:04:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 10:43:47 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 19:24:47 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,6 +57,8 @@ t_sprite	*ft_init_sprite(t_file *file, int x, int y, float dist)
 	SP->y = y + 0.5;
 	SP->x = x + 0.5;
 	SP->dist = dist;
+	SP->nb = F->M->map[F->R->mapx][F->R->mapy] == '4' ? 5 : 6;
+	F->M->map[F->R->mapx][F->R->mapy] == '2' ? SP->nb = 4 : 0;
 	SP->next = NULL;
 	return (SP);
 }
@@ -86,11 +88,13 @@ int			ft_init_imgw(t_file *file)
 	F->IW->text[3] = NULL;
 	F->IW->text[4] = NULL;
 	F->IW->text[5] = NULL;
+	F->IW->text[6] = NULL;
 	F->IW->img[0] = NULL;
 	F->IW->img[1] = NULL;
 	F->IW->img[2] = NULL;
 	F->IW->img[3] = NULL;
 	F->IW->img[4] = NULL;
 	F->IW->img[5] = NULL;
+	F->IW->img[6] = NULL;
 	return (1);
 }

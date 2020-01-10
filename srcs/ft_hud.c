@@ -6,20 +6,20 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/10 09:27:23 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 16:49:51 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 19:09:23 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-void	ft_draw_hud(t_file *file, int i)
+void	ft_draw_hud_life(t_file *file, int i, float x)
 {
 	F->HD->color = 0;
 	F->HD->hmin = F->axe_x * 0.850;
 	F->HD->hmax = F->axe_x * 0.950;
-	F->HD->wmin = F->axe_y * 0.850;
-	F->HD->wmax = F->axe_y * 0.950;
+	F->HD->wmin = F->axe_y * x;
+	F->HD->wmax = F->axe_y * (x + 0.1);
 	F->HD->w = i - F->HD->wmin;
 	F->HD->h = F->HD->hmin - 1;
 	F->HD->percentw = (F->HD->w / (float)(F->HD->wmax - F->HD->wmin));
@@ -32,4 +32,17 @@ void	ft_draw_hud(t_file *file, int i)
 		(F->HD->color > 0) ? F->imgdata[(int)F->HD->h * F->axe_y + i] =
 		10559749 : 0;
 	}
+}
+
+void	ft_draw_hud(t_file *file, int i)
+{
+	i > (int)(F->axe_y * 0.65) && i <= (int)(F->axe_y * 0.65) +
+		(int)(F->axe_y * 0.1) && F->PL->pv > 2
+		? ft_draw_hud_life(F, i, 0.65) : 0;
+	i > (int)(F->axe_y * 0.75) && i <= (int)(F->axe_y * 0.75) +
+		(int)(F->axe_y * 0.1) && F->PL->pv > 1
+		? ft_draw_hud_life(F, i, 0.75) : 0;
+	i > (int)(F->axe_y * 0.85) && i <= (int)(F->axe_y * 0.85) +
+		(int)(F->axe_y * 0.1) && F->PL->pv > 0
+		? ft_draw_hud_life(F, i, 0.85) : 0;
 }

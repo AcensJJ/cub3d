@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 16:40:56 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 19:23:25 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 21:23:47 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -107,6 +107,7 @@ int			ft_config_map(int fd, char *line, t_file *file)
 {
 	int i;
 
+	i = 0;
 	if (!((F->M->width = ft_first_line_map(line, 0, 0, file)) &&
 		(F->M->mapchar = ft_calloc(F->M->width + 2, 1))))
 	{
@@ -117,13 +118,11 @@ int			ft_config_map(int fd, char *line, t_file *file)
 	F->M->mapchar[F->M->width] = '\n';
 	while (get_next_line(fd, &line) >= 0)
 	{
-		if (!(i = ft_set_line(F, line, 0, 0)))
-			return (0);
-		else if (i == 1)
+		i = ft_config_map2(i, line, file);
+		if (i == 1)
 			return (1);
-		else if (!(ft_join_charmap(F, line, 0, i)))
+		if (i == 0)
 			return (0);
-		free(line);
 	}
 	return (1);
 }

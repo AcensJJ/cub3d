@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:50:59 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 18:25:13 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 21:14:09 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,17 +32,21 @@ void		ft_free_sprite(t_file *file)
 
 static void	ft_free_path(t_file *file)
 {
-	if (F->PA->north)
-		free(F->PA->north);
-	if (F->PA->south)
-		free(F->PA->south);
-	if (F->PA->east)
-		free(F->PA->east);
-	if (F->PA->west)
-		free(F->PA->west);
-	if (F->PA->sprite)
-		free(F->PA->sprite);
-	free(F->PA);
+	if (F->PA)
+	{
+		if (F->PA->north)
+			free(F->PA->north);
+		if (F->PA->south)
+			free(F->PA->south);
+		if (F->PA->east)
+			free(F->PA->east);
+		if (F->PA->west)
+			free(F->PA->west);
+		if (F->PA->sprite)
+			free(F->PA->sprite);
+		free(F->PA);
+		F->PA = NULL;
+	}
 }
 
 static void	ft_free_map(t_file *file)
@@ -55,8 +59,10 @@ static void	ft_free_map(t_file *file)
 	{
 		while (F->M->map[++i])
 			free(F->M->map[i]);
+		free(F->M->map);
 	}
 	free(F->M);
+	F->M = NULL;
 }
 
 static void	ft_destroy(t_file *file)
@@ -84,5 +90,6 @@ void		ft_free_fil(t_file *file)
 	F->IW ? free(F->IW) : 0;
 	F->DP ? free(F->DP) : 0;
 	F->HD ? free(F->HD) : 0;
+	F->audio ? ft_free_audio(F) : 0;
 	free(F);
 }

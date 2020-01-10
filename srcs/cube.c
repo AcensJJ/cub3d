@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 19:20:32 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 21:07:42 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,6 +84,7 @@ int			ft_parse_cube(char *fichier, t_file *file)
 		else if (!ft_config_map(fd, line, file))
 			return (0);
 	}
+	free(line);
 	close(fd);
 	return (1);
 }

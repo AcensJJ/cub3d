@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 11:39:02 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 18:40:21 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 20:24:53 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,6 +76,8 @@ void		ft_draw_sprite(t_file *file, int i)
 	t_sprite	*tmp;
 
 	beg_lst = F->SP;
+	F->SP = NULL;
+	free(F->SP);
 	F->SP = NULL;
 	while (beg_lst != NULL)
 	{

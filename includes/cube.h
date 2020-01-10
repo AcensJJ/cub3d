@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2089/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 18:34:22 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 21:25:00 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,8 @@
 # include "../minilibx/mlx.h"
 # include "../ft_printf/libft/include/libft.h"
 # include "../ft_printf/libft/include/get_next_line.h"
+# include "SDL.h"
+# include "SDL_mixer.h"
 
 # define F file
 # define FC color
@@ -34,6 +36,12 @@
 # define IW imgw
 # define DP drawsprite
 # define HD hubdraw
+
+typedef struct		s_audio
+{
+	Mix_Music		*music;
+	Mix_Chunk		*damaged;
+}					t_audio;
 
 typedef struct		s_header
 {
@@ -61,15 +69,15 @@ typedef struct		s_header2
 
 typedef struct		s_hubdr
 {
-	int		color;
-	int		hmin;
-	int		hmax;
-	int		wmin;
-	int		wmax;
-	int		w;
-	int		h;
-	float	percentw;
-	float	percenth;
+	int				color;
+	int				hmin;
+	int				hmax;
+	int				wmin;
+	int				wmax;
+	int				w;
+	int				h;
+	float			percentw;
+	float			percenth;
 
 }					t_hubdr;
 
@@ -211,10 +219,12 @@ typedef struct		s_file
 	struct s_draspr	*drawsprite;
 	struct s_imgw	*imgw;
 	struct s_hubdr	*hubdraw;
+	t_audio			*audio;
 }					t_file;
 
 int					main(int ac, char **av);
 
+void				ft_free_audio(t_file *file);
 void				ft_free_sprite(t_file *file);
 void				ft_free_fil(t_file *file);
 
@@ -229,6 +239,7 @@ int					ft_init_draw(t_file *file);
 int					ft_init_key(t_file *file);
 int					ft_init_imgw(t_file *file);
 int					ft_init_hubdraw(t_file *file);
+int					ft_init_audio(t_file *file);
 int					ft_init_draw_sprite(t_file *file);
 t_sprite			*ft_init_sprite(t_file *file, int x, int y, float dist);
 
@@ -262,6 +273,8 @@ void				ft_pathchr(char *line, t_file *file, int p);
 int					ft_set_line(t_file *file, char *line, int nb, int i);
 int					ft_first_line_map(char *line, int i, int nb, t_file *file);
 int					ft_config_map(int fd, char *line, t_file *file);
+int					ft_config_map2(int i, char *line, t_file *file);
+int					ft_join_charmap(t_file *file, char *line, int i, int nb);
 
 int					ft_quit(t_file *file);
 

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:27:46 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 15:19:47 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 16:51:38 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -119,7 +119,8 @@ int			ft_start_verif(t_file *file, char **av)
 	F->save = 0;
 	if (!(ft_init_color(F) && ft_init_path(F) && ft_init_map(F)
 	&& ft_init_player(F) && ft_init_ray(F) && ft_init_key(F)
-	&& ft_init_draw(F) && ft_init_draw_sprite(F) && ft_init_imgw(F)))
+	&& ft_init_draw(F) && ft_init_draw_sprite(F) && ft_init_imgw(F)
+	&& ft_init_hubdraw(F)))
 		return (0);
 	if (!(ft_parse_cube(av[1], F)))
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 19:16:56 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 16:52:35 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,6 +33,45 @@
 # define SP sprite
 # define IW imgw
 # define DP drawsprite
+# define HD hubdraw
+
+typedef struct		s_header
+{
+	unsigned char	bitmap_type[2];
+	int				file_size;
+	short			reserved1;
+	short			reserved2;
+	unsigned int	offset_bits;
+}					t_header;
+
+typedef struct		s_header2
+{
+	unsigned int	size_header;
+	unsigned int	width;
+	unsigned int	height;
+	short int		planes;
+	short int		bit_count;
+	unsigned int	compression;
+	unsigned int	image_size;
+	unsigned int	ppm_x;
+	unsigned int	ppm_y;
+	unsigned int	clr_used;
+	unsigned int	clr_important;
+}					t_header2;
+
+typedef struct		s_hubdr
+{
+	int		color;
+	int		hmin;
+	int		hmax;
+	int		wmin;
+	int		wmax;
+	int		w;
+	int		h;
+	float	percentw;
+	float	percenth;
+
+}					t_hubdr;
 
 typedef struct		s_sprite
 {
@@ -46,10 +85,10 @@ typedef struct		s_sprite
 
 typedef struct		s_imgw
 {
-	int				*text[5];
-	void			*img[5];
-	int				width[5];
-	int				height[5];
+	int				*text[6];
+	void			*img[6];
+	int				width[6];
+	int				height[6];
 }					t_imgw;
 
 typedef struct		s_draspr
@@ -168,6 +207,7 @@ typedef struct		s_file
 	struct s_sprite	*sprite;
 	struct s_draspr	*drawsprite;
 	struct s_imgw	*imgw;
+	struct s_hubdr	*hubdraw;
 }					t_file;
 
 int					main(int ac, char **av);
@@ -185,6 +225,7 @@ int					ft_init_ray(t_file *file);
 int					ft_init_draw(t_file *file);
 int					ft_init_key(t_file *file);
 int					ft_init_imgw(t_file *file);
+int					ft_init_hubdraw(t_file *file);
 int					ft_init_draw_sprite(t_file *file);
 t_sprite			*ft_init_sprite(t_file *file, int x, int y, float dist);
 
@@ -203,13 +244,13 @@ int					ft_appui(int i, t_file *file);
 int					ft_relache(int i, t_file *file);
 
 void				ft_draw_sprite(t_file *file, int i);
+void				ft_draw_hud(t_file *file, int i);
 
-int					*ft_readxpm(t_file *file, char *str, int n);
+void				ft_readxpm(t_file *file, char *str, int n);
 void				ft_hit_wall(t_file *file);
 void				ft_draw(t_file *file, int x);
 
 void				raycast(t_file *file);
-int					ft_snakeoil(t_file *file);
 
 void				ft_resochr(char *line, t_file *file);
 void				ft_colorchr(char *line, t_file *file, int p, int i);
@@ -220,5 +261,8 @@ int					ft_first_line_map(char *line, int i, int nb, t_file *file);
 int					ft_config_map(int fd, char *line, t_file *file);
 
 int					ft_quit(t_file *file);
+
+void				ft_smile(t_file *file);
+int					ft_snakeoil(t_file *file);
 
 #endif

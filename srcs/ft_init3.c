@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_verif2.c                                      .::    .:/ .      .::   */
+/*   ft_init3.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/12/17 14:27:46 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 09:27:15 by jacens      ###    #+. /#+    ###.fr     */
+/*   Created: 2020/01/10 16:50:12 by jacens       #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/10 16:52:08 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-int			ft_verif_reso(t_file *file)
+int			ft_init_hubdraw(t_file *file)
 {
-	if ((F->axe_x < 1 || F->axe_x > 2880) ||
-			(F->axe_y < 1 || F->axe_y > 5120))
+	if (!(F->HD = malloc(sizeof(t_hubdr))))
 	{
-		ft_printf("Error\nMauvaise résolution\n");
 		ft_free_fil(F);
-		return (0);
-	}
-	return (1);
-}
-
-int			ft_verif_path_img(t_file *file)
-{
-	if (open(F->PA->east, O_RDONLY) < 0 || open(F->PA->north, O_RDONLY) < 0 ||
-		open(F->PA->west, O_RDONLY) < 0 || open(F->PA->south, O_RDONLY) < 0 ||
-		open(F->PA->sprite, O_RDONLY) < 0)
-	{
-		ft_printf("Error\nMauvais path\n");
-		ft_free_fil(F);
+		ft_printf("Error\nMalloc hub draw\n");
 		return (0);
 	}
 	return (1);

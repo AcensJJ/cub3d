@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 16:40:56 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/08 11:13:52 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 11:48:32 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,7 +59,7 @@ int			ft_set_line(t_file *file, char *line, int nb, int i)
 		while (line[i] == ' ')
 			i++;
 		if (line[i] == '2' || line[i] == '1' || line[i] == '0' || line[i] == 'N'
-		|| line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+		|| line[i] == 'S' || line[i] == 'E' || line[i] == 'W' || line[i] == '3')
 		{
 			nb += 1;
 			i++;

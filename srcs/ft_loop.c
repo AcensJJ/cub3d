@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 20:23:05 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 16:46:35 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,6 +59,9 @@ void			raycast(t_file *file)
 		ft_hit_wall(file);
 		ft_draw(file, i);
 		ft_draw_sprite(F, i);
+		i > (int)(F->axe_y * 0.85) && i <= (int)(F->axe_y * 0.85) +
+		(int)(F->axe_y * 0.1)
+		? ft_draw_hud(F, i) : 0;
 	}
 	F->save == 0 ? mlx_put_image_to_window(F->mlx, F->win, F->img, 0, 0) : 0;
 }

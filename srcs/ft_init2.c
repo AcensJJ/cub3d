@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/19 20:04:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/09 15:33:34 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/10 10:43:47 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -85,10 +85,12 @@ int			ft_init_imgw(t_file *file)
 	F->IW->text[2] = NULL;
 	F->IW->text[3] = NULL;
 	F->IW->text[4] = NULL;
+	F->IW->text[5] = NULL;
 	F->IW->img[0] = NULL;
 	F->IW->img[1] = NULL;
 	F->IW->img[2] = NULL;
 	F->IW->img[3] = NULL;
 	F->IW->img[4] = NULL;
+	F->IW->img[5] = NULL;
 	return (1);
 }

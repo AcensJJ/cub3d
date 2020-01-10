@@ -5,8 +5,8 @@
 #                                                  +:+:+   +:    +:  +:+:+     #
 #    By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
-#    Created: 2020/01/09 20:25:19 by jacens       #+#   ##    ##    #+#        #
-#    Updated: 2020/01/09 20:25:22 by jacens      ###    #+. /#+    ###.fr      #
+#    Created: 2020/01/10 09:26:26 by jacens       #+#   ##    ##    #+#        #
+#    Updated: 2020/01/10 16:50:36 by jacens      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -21,10 +21,11 @@ LIB			=					libftprintf.a
 LIBS		=					ft_printf/libftprintf.a
 SRC_PATH	=					srcs
 SRCS_NAME	= 					cube.c ft_loop.c ft_set_color.c ft_move.c\
-								ft_init.c ft_init2.c ft_config_struct.c\
+								ft_init.c ft_init2.c ft_init3.c\
 								ft_free.c ft_config_map.c ft_sprite_lst.c\
 								ft_verif.c ft_keys.c ft_verif2.c ft_wall.c\
-								ft_sprite_draw.c
+								ft_sprite_draw.c ft_bmp_conv.c ft_hud.c\
+								ft_config_struct.c
 OBJS		= 					${SRCS:.c=.o}
 LIBRARIES 	= 					$(LIBS) $(MINILIBXS)
 NAME		= 					Cub3D

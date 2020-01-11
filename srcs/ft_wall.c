@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 14:54:18 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 17:28:44 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 21:25:15 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,12 +19,15 @@ static void		ft_draw_suite2(t_file *file, int x, int texnum, int y)
 	F->D->texy = ((F->D->d * F->IW->height[texnum])
 	/ F->D->lineheight) / 256;
 	F->D->texy < 0 ? F->D->texy = 0 : 0;
-	F->imgdata[y * F->axe_y + x] = ((F->D->texy * F->IW->width[texnum]
-	+ F->D->texx) < (int)F->IW->text[texnum] ? F->IW->text[texnum]
-	[(F->D->texy * F->IW->width[texnum] + F->D->texx)] : 0);
-	if (y > 0 && !(F->IW->height[texnum] * F->IW->width[texnum] >
-	(F->D->texy * F->IW->width[texnum] + F->D->texx)))
-		F->imgdata[y * F->axe_y + x] = F->imgdata[(y - 1) * F->axe_y + x];
+	if (!((F->D->texy * F->IW->width[texnum] + F->D->texx) >=
+	(int)F->IW->text[texnum]))
+	{
+		F->imgdata[y * F->axe_y + x] = F->IW->text[texnum][(F->D->texy *
+		F->IW->width[texnum] + F->D->texx)];
+		if (y > 0 && !(F->IW->height[texnum] * F->IW->width[texnum] >
+		(F->D->texy * F->IW->width[texnum] + F->D->texx)))
+			F->imgdata[y * F->axe_y + x] = F->imgdata[(y - 1) * F->axe_y + x];
+	}
 }
 
 static void		ft_draw_suite(t_file *file, int x, int texnum)

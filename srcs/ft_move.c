@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/20 04:39:55 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 15:19:13 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 21:27:11 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,35 +15,49 @@
 
 static void	ft_verif_etat2(t_file *file)
 {
-	if (F->M->map[(int)(F->PL->x)][(int)(F->PL->y)] == '5'
-	&& F->PL->pv > 0 && (F->PL->etatx != (int)F->PL->x
-	|| F->PL->etaty != (int)F->PL->y))
+	if (F->M->map[(int)(F->PL->x)][(int)(F->PL->y)] == '5')
 	{
-		F->PL->pv--;
-		Mix_PlayChannel(2, file->audio->damaged, 0);
-		F->PL->etat = 2;
-		F->PL->etatx = (int)F->PL->x;
-		F->PL->etaty = (int)F->PL->y;
+		if ((F->PL->etatx != (int)F->PL->x || F->PL->etaty !=
+		(int)F->PL->y) && F->PL->pv > 0)
+		{
+			F->PL->pv--;
+			Mix_PlayChannel(2, file->audio->damaged, 0);
+			F->PL->etat = 2;
+			F->PL->etatx = (int)F->PL->x;
+			F->PL->etaty = (int)F->PL->y;
+		}
 	}
-}
-
-static void	ft_verif_etat(t_file *file)
-{
-	if (F->M->map[(int)(F->PL->x)][(int)(F->PL->y)] == '0' && F->PL->etat != 0)
+	else if (F->PL->etat != 0)
 	{
 		F->PL->etat = 0;
 		F->PL->etatx = -1;
 		F->PL->etaty = -1;
 	}
-	else if (F->M->map[(int)(F->PL->x)][(int)(F->PL->y)] == '4'
-	&& F->PL->pv < 3 && (F->PL->etatx != (int)F->PL->x
-	|| F->PL->etaty != (int)F->PL->y))
+}
+
+static void	ft_verif_etat(t_file *file)
+{
+	if (F->M->map[(int)(F->PL->x)][(int)(F->PL->y)] == '4')
 	{
-		F->PL->pv++;
-		F->PL->pv > 3 ? F->PL->pv == 3 : 0;
-		F->PL->etat = 1;
-		F->PL->etatx = (int)F->PL->x;
-		F->PL->etaty = (int)F->PL->y;
+		if (F->PL->pv < 3 && (F->PL->etatx != (int)F->PL->x
+		|| F->PL->etaty != (int)F->PL->y))
+		{
+			F->PL->pv++;
+			Mix_PlayChannel(2, file->audio->heal, 0);
+			F->PL->etat = 1;
+			F->PL->etatx = (int)F->PL->x;
+			F->PL->etaty = (int)F->PL->y;
+		}
+	}
+	else if (F->M->map[(int)(F->PL->x)][(int)(F->PL->y)] == '3')
+	{
+		if ((F->PL->etatx != (int)F->PL->x || F->PL->etaty != (int)F->PL->y))
+		{
+			Mix_PlayChannel(2, file->audio->secret, 0);
+			F->PL->etat = 3;
+			F->PL->etatx = (int)F->PL->x;
+			F->PL->etaty = (int)F->PL->y;
+		}
 	}
 	else
 		ft_verif_etat2(F);

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/10 09:27:29 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 16:46:12 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 14:38:14 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -80,6 +80,5 @@ void	ft_smile(t_file *file)
 	F->imgdata = (int *)mlx_get_data_addr(file->img, &bits, &sizeline, &end);
 	raycast(file);
 	save_bitmap("cube.bmp", F);
-	ft_free_fil(F);
-	exit(EXIT_SUCCESS);
+	ft_quit(F);
 }

@@ -6,7 +6,7 @@
 #    By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2020/01/10 09:26:26 by jacens       #+#   ##    ##    #+#        #
-#    Updated: 2020/01/10 21:24:28 by jacens      ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/11 14:39:52 by jacens      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -33,7 +33,7 @@ LIBRARIES   =                   $(LIBSDL2) $(LIBS) $(MINILIBXS)
 NAME		= 					Cub3D
 RM			= 					rm -f
 FLAGS 		= 					-Wall -Wextra -Werror -g3
-GFLAGS 		=					-Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit\
+GFLAGS 		=					-Wall -Wextra -Werror -g3 -fsanitize=address -lmlx -framework OpenGL -framework AppKit\
 								-I$(INCLUDE_PATH)\
 								-I./$(LIBSDLMIXER)/\
 								-I$(FW_PATH)/SDL2.framework/Headers/\

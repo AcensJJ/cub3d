@@ -6,12 +6,30 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 11:39:02 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 20:24:53 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 14:48:14 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
+
+static void	ft_draw_sp_2(t_file *file, int i, t_sprite *sprite)
+{
+	while (F->DP->drawstarty < F->DP->drawendy)
+	{
+		F->DP->d = (F->DP->drawstarty - F->DP->vmovescreen) * 256 -
+		F->axe_x * 128 + F->DP->height * 128;
+		F->DP->texy = ((F->DP->d * F->IW->height[SP->nb]) /
+		F->DP->height) / 256;
+		F->DP->color = (F->IW->width[SP->nb] * F->DP->texy + F->DP->texx >
+		(int)F->IW->text[SP->nb] ? 0 :
+		F->IW->text[SP->nb][F->IW->width[SP->nb] *
+		F->DP->texy + F->DP->texx]);
+		(F->DP->color > 0) ? F->imgdata[F->DP->drawstarty *
+		F->axe_y + i] = F->DP->color : 0;
+		F->DP->drawstarty++;
+	}
+}
 
 static void	ft_draw_sprite_it(t_file *file, int i, t_sprite *sprite)
 {
@@ -27,18 +45,7 @@ static void	ft_draw_sprite_it(t_file *file, int i, t_sprite *sprite)
 		F->DP->texx = (int)(256 * (i - (-F->DP->width / 2 +
 		F->DP->screen)) * F->IW->width[SP->nb] / F->DP->width) / 256;
 		if (F->DP->y > 0 && i >= 0 && i < F->axe_y && F->DP->y)
-			while (F->DP->drawstarty < F->DP->drawendy)
-			{
-				F->DP->d = (F->DP->drawstarty - F->DP->vmovescreen) * 256 -
-				F->axe_x * 128 + F->DP->height * 128;
-				F->DP->texy = ((F->DP->d * F->IW->height[SP->nb]) /
-				F->DP->height) / 256;
-				F->DP->color = F->IW->text[SP->nb][F->IW->width[SP->nb] *
-				F->DP->texy + F->DP->texx];
-				(F->DP->color > 0) ? F->imgdata[F->DP->drawstarty *
-				F->axe_y + i] = F->DP->color : 0;
-				F->DP->drawstarty++;
-			}
+			ft_draw_sp_2(F, i, sprite);
 	}
 }
 

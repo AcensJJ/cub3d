@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 13:51:04 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 18:26:25 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 15:06:09 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -87,6 +87,8 @@ int		ft_init_player(t_file *file)
 	F->PL->planx = 0;
 	F->PL->pv = 3;
 	F->PL->etat = 0;
+	F->PL->etatx = -1;
+	F->PL->etaty = -1;
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2089/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 21:25:00 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 15:05:47 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -170,6 +170,8 @@ typedef struct		s_player
 	float			camx;
 	int				pv;
 	int				etat;
+	int				etatx;
+	int				etaty;
 }					t_player;
 
 typedef struct		s_map

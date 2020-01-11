@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 11:39:02 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 14:48:14 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 15:02:02 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ static void	ft_draw_sp_2(t_file *file, int i, t_sprite *sprite)
 		F->axe_x * 128 + F->DP->height * 128;
 		F->DP->texy = ((F->DP->d * F->IW->height[SP->nb]) /
 		F->DP->height) / 256;
-		F->DP->color = (F->IW->width[SP->nb] * F->DP->texy + F->DP->texx >
+		F->DP->color = (F->IW->width[SP->nb] * F->DP->texy + F->DP->texx >=
 		(int)F->IW->text[SP->nb] ? 0 :
 		F->IW->text[SP->nb][F->IW->width[SP->nb] *
 		F->DP->texy + F->DP->texx]);

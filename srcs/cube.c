@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 21:07:42 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/11 19:43:28 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,8 +21,8 @@ static void	ft_cube(t_file *file)
 
 	F->mlx = mlx_init();
 	ft_readxpm(F, F->PA->north, 0);
-	ft_readxpm(F, F->PA->south, 1);
-	ft_readxpm(F, F->PA->east, 2);
+	ft_readxpm(F, F->PA->east, 1);
+	ft_readxpm(F, F->PA->south, 2);
 	ft_readxpm(F, F->PA->west, 3);
 	ft_readxpm(F, F->PA->sprite, 4);
 	ft_readxpm(F, "./textures_hi/heart.xpm", 5);

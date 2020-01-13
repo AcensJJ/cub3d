@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/20 05:44:25 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 12:28:24 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 13:07:37 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,15 +31,16 @@ int			ft_quit(t_file *file)
 
 int			ft_appui(int i, t_file *file)
 {
+	printf("%i\n", i);
 	if (i == 53)
 		ft_quit(F);
 	if (i == 123)
 		F->K->mvleft = 1;
 	if (i == 124)
 		F->K->mvright = 1;
-	if (i == 13)
+	if (i == 13 || i == 126)
 		F->K->up = 1;
-	if (i == 1)
+	if (i == 1 || i == 256)
 		F->K->down = 1;
 	if (i == 0)
 		F->K->left = 1;
@@ -54,9 +55,9 @@ int			ft_relache(int i, t_file *file)
 		F->K->mvleft = 0;
 	if (i == 124)
 		F->K->mvright = 0;
-	if (i == 13)
+	if (i == 13 || i == 126)
 		F->K->up = 0;
-	if (i == 1)
+	if (i == 1 || i == 156)
 		F->K->down = 0;
 	if (i == 0)
 		F->K->left = 0;

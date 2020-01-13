@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/20 04:39:55 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 21:27:11 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 11:16:14 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,7 +37,8 @@ static void	ft_verif_etat2(t_file *file)
 
 static void	ft_verif_etat(t_file *file)
 {
-	if (F->M->map[(int)(F->PL->x)][(int)(F->PL->y)] == '4')
+	if (F->M->map[(int)(F->PL->x)][(int)(F->PL->y)] == '4' ||
+	F->M->map[(int)(F->PL->x)][(int)(F->PL->y)] == '6')
 	{
 		if (F->PL->pv < 3 && (F->PL->etatx != (int)F->PL->x
 		|| F->PL->etaty != (int)F->PL->y))

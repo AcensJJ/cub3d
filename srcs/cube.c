@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/16 16:04:08 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 19:36:41 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 11:14:31 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,8 @@ static void	ft_cube(t_file *file)
 	ft_readxpm(F, F->PA->west, 3);
 	ft_readxpm(F, F->PA->sprite, 4);
 	ft_readxpm(F, "./textures_hi/heart.xpm", 5);
-	ft_readxpm(F, "./textures_hi/barrel_wood.xpm", 6);
+	ft_readxpm(F, "./textures_hi/boo.xpm", 6);
+	ft_readxpm(F, "./textures_hi/1upshroom.xpm", 7);
 	F->win = mlx_new_window(F->mlx, F->axe_y, F->axe_x, "Have FUN");
 	F->save ? ft_smile(F) : 0;
 	F->img = mlx_new_image(F->mlx, F->axe_y, F->axe_x);

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2089/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/11 20:58:10 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 11:15:11 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -97,10 +97,10 @@ typedef struct		s_sprite
 
 typedef struct		s_imgw
 {
-	int				*text[7];
-	void			*img[7];
-	int				width[7];
-	int				height[7];
+	int				*text[8];
+	void			*img[8];
+	int				width[8];
+	int				height[8];
 }					t_imgw;
 
 typedef struct		s_draspr

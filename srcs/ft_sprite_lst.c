@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 10:38:27 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 18:53:21 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 11:16:50 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -87,7 +87,8 @@ void				ft_sprit_verif_lst(t_file *file)
 
 	if (F->M->map[F->R->mapx][F->R->mapy] == '2' ||
 		F->M->map[F->R->mapx][F->R->mapy] == '4' ||
-		F->M->map[F->R->mapx][F->R->mapy] == '5')
+		F->M->map[F->R->mapx][F->R->mapy] == '5' ||
+		F->M->map[F->R->mapx][F->R->mapy] == '6')
 		if (ft_sprit_check(F))
 		{
 			d = ((F->PL->x - 0.5 - F->R->mapx) * (F->PL->x - 0.5 - F->R->mapx)

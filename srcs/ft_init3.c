@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/10 16:50:12 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 12:33:56 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 14:08:00 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,6 +43,5 @@ int			ft_init_audio(t_file *file)
 	F->audio->endwin = Mix_LoadWAV("./audio/endwin.mp3");
 	Mix_PlayMusic(F->audio->music, -1);
 	Mix_PlayChannel(3, file->audio->start, 0);
-	Mix_VolumeMusic(10);
 	return (1);
 }

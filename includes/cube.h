@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2089/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 14:03:46 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 14:32:56 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -251,12 +251,13 @@ int					ft_init_audio(t_file *file);
 int					ft_init_draw_sprite(t_file *file);
 t_sprite			*ft_init_sprite(t_file *file, int x, int y, float dist);
 
+int					ft_error_parse(t_file *file, int fd, char *line);
 int					ft_verif_color_path(t_file *file);
 int					ft_verif_map(t_file *file);
 int					ft_verif_reso(t_file *file);
 int					ft_verif_player_config(t_file *file, char line, int nb);
-int					ft_start_verif(t_file *file, char **av);
 int					ft_verif_path_img(t_file *file);
+int					ft_start_verif(t_file *file, char **av);
 
 int					ft_parse_cube(char	*fichier, t_file *file);
 int					ft_rgbtoint(int red, int green, int blue);

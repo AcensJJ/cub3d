@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/17 16:40:56 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/10 21:25:44 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 14:34:49 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,4 +32,18 @@ int			ft_config_map2(int i, char *line, t_file *file)
 	}
 	free(line);
 	return (2);
+}
+
+int			ft_error_parse(t_file *file, int fd, char *line)
+{
+	if (fd > 0)
+	{
+		free(line);
+		close(fd);
+		return (1);
+	}
+	close(fd);
+	ft_free_fil(F);
+	ft_printf("Error\nBad file\n");
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/20 05:44:25 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 13:10:57 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 14:33:32 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 int			ft_quit(t_file *file)
 {
 	Mix_HaltMusic();
-	F->PL->pv == 0 ? Mix_PlayChannel(2, file->audio->end, 0) : 
+	F->PL->pv == 0 ? Mix_PlayChannel(2, file->audio->end, 0) :
 	Mix_PlayChannel(2, file->audio->endwin, 0);
 	while (Mix_Playing(2) != 0)
 		SDL_Delay(100);

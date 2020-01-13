@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/20 04:39:55 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 11:54:29 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 12:20:47 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,7 +56,7 @@ static void	ft_verif_etat(t_file *file)
 	{
 		if ((F->PL->etatx != (int)F->PL->x || F->PL->etaty != (int)F->PL->y))
 		{
-			Mix_PlayChannel(2, file->audio->secret, 0);
+			Mix_PlayChannel(1, file->audio->secret, 0);
 			F->PL->etat = 3;
 			F->PL->etatx = (int)F->PL->x;
 			F->PL->etaty = (int)F->PL->y;

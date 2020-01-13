@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/20 05:44:25 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 12:05:23 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 12:22:26 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,10 +15,14 @@
 
 int			ft_quit(t_file *file)
 {
+	Mix_HaltMusic();
 	Mix_PlayChannel(2, file->audio->end, 0);
-	sleep(3);
+	while (Mix_Playing(2) != 0)
+		SDL_Delay(100);
 	mlx_destroy_window(F->mlx, F->win);
 	mlx_destroy_image(F->mlx, file->img);
+	Mix_Quit();
+	SDL_Quit();
 	ft_free_fil(F);
 	exit(EXIT_SUCCESS);
 	return (0);

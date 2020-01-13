@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/10 16:50:12 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 11:55:47 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 12:20:35 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,7 +41,7 @@ int			ft_init_audio(t_file *file)
 	F->audio->start = Mix_LoadWAV("./audio/start.mp3");
 	F->audio->end = Mix_LoadWAV("./audio/end.mp3");
 	Mix_PlayMusic(F->audio->music, -1);
-	Mix_PlayChannel(2, file->audio->start, 0);
+	Mix_PlayChannel(3, file->audio->start, 0);
 	Mix_VolumeMusic(10);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2089/12/12 02:52:41 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 11:55:12 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/13 12:28:58 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,6 +46,7 @@ typedef struct		s_audio
 	Mix_Chunk		*secret;
 	Mix_Chunk		*start;
 	Mix_Chunk		*end;
+	Mix_Chunk		*endwin;
 }					t_audio;
 
 typedef struct		s_header

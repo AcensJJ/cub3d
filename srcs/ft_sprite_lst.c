@@ -6,34 +6,25 @@
 /*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/08 10:38:27 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 11:16:50 by jacens      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 17:10:42 by jacens      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-static t_sprite		*ft_sprit_add_lstorder(t_file *file, t_sprite *sprite)
+static t_sprite		*ft_sprit_add_lstorder(t_file *file)
 {
-	t_sprite	*beg_lst;
-
 	if (F->SP == NULL)
 		return (NULL);
-	beg_lst = F->SP;
-	while (beg_lst->next != NULL)
-	{
-		if (beg_lst->dist < sprite->dist)
-			return (beg_lst);
-		beg_lst = beg_lst->next;
-	}
-	return (beg_lst);
+	return (F->SP);
 }
 
 static void			ft_sprit_config_add_lst(t_file *file, t_sprite *sprite)
 {
 	t_sprite *beg_lst;
 
-	beg_lst = ft_sprit_add_lstorder(F, sprite);
+	beg_lst = ft_sprit_add_lstorder(F);
 	if (F->SP == beg_lst)
 	{
 		if (beg_lst->dist < sprite->dist)

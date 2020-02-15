@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_init3.c                                       .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/10 16:50:12 by jacens       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/13 20:51:17 by jacens      ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init3.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jacens <jacens@student.le-101.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/10 16:50:12 by jacens            #+#    #+#             */
+/*   Updated: 2020/02/15 14:39:07 by jacens           ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/cube.h"
 
@@ -37,7 +37,7 @@ int			ft_init_audio(t_file *file)
 	F->audio->heal = Mix_LoadWAV("./audio/heal.mp3");
 	F->audio->heal2 = Mix_LoadWAV("./audio/heal2.mp3");
 	F->audio->secret = Mix_LoadWAV("./audio/secret.mp3");
-	F->audio->music = Mix_LoadMUS("./audio/music.mp3");
+	F->audio->music = Mix_LoadMUS("./audio/bruh.mp3");
 	F->audio->start = Mix_LoadWAV("./audio/start.mp3");
 	F->audio->end = Mix_LoadWAV("./audio/end.mp3");
 	F->audio->endwin = Mix_LoadWAV("./audio/endwin.mp3");

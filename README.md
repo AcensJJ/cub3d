@@ -73,7 +73,7 @@ strict tel que :
       NO ./path_to_the_north_texture
       ```
       - identifiant : <strong>NO</strong>
-      -chemin vers la texture nord
+      - chemin vers la texture nord
     - South texture :
       ```
       SO ./path_to_the_south_texture

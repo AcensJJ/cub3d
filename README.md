@@ -154,4 +154,6 @@ Liste des bonus :
 
 # Resultat
 
-```bientot```
+<img width="1502" alt="Screen Shot 2020-12-20 at 18 59 13" src="https://user-images.githubusercontent.com/45235527/102720636-d4d3c080-42f5-11eb-9d7b-1829b34eb8c8.png">
+<img width="1002" alt="Screen Shot 2020-12-20 at 18 58 21" src="https://user-images.githubusercontent.com/45235527/102720641-dac9a180-42f5-11eb-8526-81cc265346b2.png">
+

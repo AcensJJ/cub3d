@@ -41,9 +41,8 @@ clean:
 	rm -f $(OBJ)
 	make clean -C $(DIR_LIB)
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
-	rm -f $(OBJ)
 	make fclean -C $(DIR_LIB)
 
 re : fclean all

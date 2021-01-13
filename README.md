@@ -1,6 +1,6 @@
 # cub3d
 
- <img src="https://user-images.githubusercontent.com/45235527/97051493-9339ca00-157f-11eb-8f7a-2cb540fa4f10.PNG" width="250" height="200" />
+<img src="https://user-images.githubusercontent.com/45235527/97051493-9339ca00-157f-11eb-8f7a-2cb540fa4f10.PNG" width="250" height="200" />
 
 <strong>Description</strong>
 

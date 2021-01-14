@@ -1,6 +1,6 @@
 # cub3d
 
-<img src="https://user-images.githubusercontent.com/45235527/97051493-9339ca00-157f-11eb-8f7a-2cb540fa4f10.PNG" width="250" height="200" />
+<img src="https://user-images.githubusercontent.com/45235527/104627073-dc894980-5696-11eb-999d-e53798ea9ae4.png" width="250" height="200" />
 
 <strong>Description</strong>
 
@@ -10,7 +10,7 @@ Ce projet est inspiré du jeu éponyme mondialement connu, considéré comme le 
 
 # Partie Obligatoire - Cub3D
 
-![Capture](https://user-images.githubusercontent.com/45235527/97051624-c419ff00-157f-11eb-9e39-bf54a70006c7.PNG)
+![sujet](https://user-images.githubusercontent.com/45235527/97051624-c419ff00-157f-11eb-9e39-bf54a70006c7.PNG)
 
 Les contraintes sont les suivantes :
 - Vous devez utiliser la minilibX. Soit dans la version disponible sur votre OS, ou
@@ -155,6 +155,4 @@ Liste des bonus :
 
 # Resultat
 
-<img width="1502" alt="Screen Shot 2020-12-20 at 18 59 13" src="https://user-images.githubusercontent.com/45235527/102720636-d4d3c080-42f5-11eb-9d7b-1829b34eb8c8.png">
-<img width="1002" alt="Screen Shot 2020-12-20 at 18 58 21" src="https://user-images.githubusercontent.com/45235527/102720641-dac9a180-42f5-11eb-8526-81cc265346b2.png">
-
+<img width="1502" alt="Resultat" src="https://user-images.githubusercontent.com/45235527/102720636-d4d3c080-42f5-11eb-9d7b-1829b34eb8c8.png">

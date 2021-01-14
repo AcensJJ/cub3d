@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jacens <jacens@student.le-101.fr>          +#+  +:+       +#+        */
+/*   By: jacens <jacens@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/10 16:50:12 by jacens            #+#    #+#             */
-/*   Updated: 2020/02/15 14:39:07 by jacens           ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 15:21:10 by jacens           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/cube.h"
 

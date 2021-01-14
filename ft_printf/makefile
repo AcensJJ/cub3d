@@ -1,14 +1,13 @@
 # **************************************************************************** #
-#                                                           LE - /             #
-#                                                               /              #
-#    makefile                                         .::    .:/ .      .::    #
-#                                                  +:+:+   +:    +:  +:+:+     #
-#    By: jacens <jacens@student.le-101.fr>          +:+   +:    +:    +:+      #
-#                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/10/18 15:41:28 by jacens       #+#   ##    ##    #+#        #
-#    Updated: 2019/12/16 15:07:04 by jacens      ###    #+. /#+    ###.fr      #
-#                                                          /                   #
-#                                                         /                    #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jacens <jacens@student.42lyon.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/10/18 15:41:28 by jacens            #+#    #+#              #
+#    Updated: 2021/01/14 15:20:38 by jacens           ###   ########lyon.fr    #
+#                                                                              #
 # **************************************************************************** #
 
 NAME    =   libftprintf.a
@@ -20,7 +19,7 @@ HEADER  =   includes
 
 LFLAGS  =   -I $(HEADER)
 
-SRCS    =	$(shell find . -name "*.c")
+SRCS    =	$(shell find srcs -name "*.c")
 
 OBJ     =   $(SRCS:.c=.o)
 

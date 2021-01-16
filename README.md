@@ -1,6 +1,6 @@
 # cub3d
 
-<img src="https://user-images.githubusercontent.com/45235527/104627073-dc894980-5696-11eb-999d-e53798ea9ae4.png" width="250" height="200" />
+<img alt="Note" src="https://user-images.githubusercontent.com/45235527/104627073-dc894980-5696-11eb-999d-e53798ea9ae4.png" width="250" height="200" />
 
 <strong>Description</strong>
 
@@ -155,4 +155,6 @@ Liste des bonus :
 
 # Resultat
 
-<img width="1502" alt="Resultat" src="https://user-images.githubusercontent.com/45235527/104629971-7bfc0b80-569a-11eb-8128-3ead701abe3e.png">
+<img width="1612" alt="map3.cub" src="https://user-images.githubusercontent.com/45235527/104811439-ba5d0c00-57fb-11eb-86ce-305d1f7c65a0.png">
+
+<img width="1612" alt="map.cub" src="https://user-images.githubusercontent.com/45235527/104811336-f2b01a80-57fa-11eb-9866-985ac5ca8f3a.png">

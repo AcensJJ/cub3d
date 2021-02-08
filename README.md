@@ -6,6 +6,8 @@
 
 <strong>Description</strong>
 
+> *Project en collaboration avec <a href="https://github.com/nemu69">Nemuel Page Léonie</a> (<a href="https://profile.intra.42.fr/users/nepage-l">nepage-l</a>).*
+
 Ce projet est inspiré du jeu éponyme mondialement connu, considéré comme le premier FPS jamais développé. Il vous permettra d'explorer la technique du ray-casting. Votre objectif est de faire une vue dynamique au sein d'un labyrinthe, dans lequel vous devrez trouver votre chemin.
 
 ![Cub3D game](https://user-images.githubusercontent.com/45235527/104591011-67088380-566c-11eb-8374-ba15225da9f5.gif)

@@ -10,7 +10,9 @@ Ce projet est inspiré du jeu éponyme mondialement connu, considéré comme le 
 
 > *Project en collaboration avec <a href="https://github.com/nemu69">Nemuel Page Léonie</a> (<a href="https://profile.intra.42.fr/users/nepage-l">nepage-l</a>).*
 
-![Cub3D game](https://user-images.githubusercontent.com/45235527/104591011-67088380-566c-11eb-8374-ba15225da9f5.gif)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/45235527/104591011-67088380-566c-11eb-8374-ba15225da9f5.gif">
+ </p>
 
 # Partie Obligatoire - Cub3D
 
@@ -156,7 +158,14 @@ Liste des bonus :
 - Portes secrètes.
 - Son et musique.
 
+# Raycasting
 
+Le raycasting est une technique de calcul d'images de synthèse 3D, facilement accélérée matériellement par une carte graphique dédiée. L'accélération peut se faire en utilisant l'API OpenGL, Glide (tombé en désuétude), ou Direct3D.
+
+<p align="center">
+  <img alt="Raycasting" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Simple_raycasting_with_fisheye_correction.gif" />
+</p>
+ 
 # Resultat
 
 <img width="1612" alt="map3.cub" src="https://user-images.githubusercontent.com/45235527/104811439-ba5d0c00-57fb-11eb-86ce-305d1f7c65a0.png">

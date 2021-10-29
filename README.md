@@ -168,7 +168,7 @@ Le raycasting est une technique de calcul d'images de synthèse 3D, facilement a
   <img alt="Raycasting" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Simple_raycasting_with_fisheye_correction.gif" />
 </p>
  
-# Resultat
+# Results
 
 <img width="1612" alt="map3.cub" src="https://user-images.githubusercontent.com/45235527/104811439-ba5d0c00-57fb-11eb-86ce-305d1f7c65a0.png">
 
